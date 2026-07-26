@@ -1,0 +1,4 @@
+lowercase
+strip-punct
+collapse-spaces
+hyphenate

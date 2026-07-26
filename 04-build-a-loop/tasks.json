@@ -1,0 +1,12 @@
+{"train": [
+ ["  The Great Escape  ", "great-escape"],
+ ["Hello,   World!",      "hello-world"],
+ ["A Tale of Two Cities", "tale-two-cities"],
+ ["RUN the LOOP",         "run-loop"],
+ ["Trace!!  Judge??",     "trace-judge"],
+ ["  Gate of the Day ",   "gate-day"]],
+ "heldout": [
+ ["The Ouroboros Loop",   "ouroboros-loop"],
+ ["Spec, not Prompt.",    "spec-not-prompt"],
+ ["  A Loop  of Loops ",  "loop-loops"],
+ ["EDIT the Prompt!",     "edit-prompt"]]}
