@@ -12,7 +12,7 @@
 set -euo pipefail
 
 # SkillOpt 저장소 위치 (필요시 SKILLOPT_DIR 환경변수로 덮어쓰기)
-SKILLOPT_DIR="${SKILLOPT_DIR:-/Users/jaegyu.lee/Project/SkillOpt}"
+SKILLOPT_DIR="${SKILLOPT_DIR:-./SkillOpt}"
 
 if [[ ! -d "$SKILLOPT_DIR/skillopt_sleep" ]]; then
   echo "ERROR: SkillOpt 를 찾을 수 없습니다: $SKILLOPT_DIR" >&2
