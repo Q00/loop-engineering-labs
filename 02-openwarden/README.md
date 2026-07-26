@@ -13,7 +13,8 @@
 | 1 | 진짜 Warden 프로필(`Q00/OpenWarden`)을 열어 구조를 본다 | 5분 |
 | 2 | 가상 시나리오 4개를 5-상태로 분류하고 답을 맞춰본다 | 15분 |
 | 3 | 같은 시나리오를 AI 도구에 시켜 내 판정과 비교한다 | 10분 |
-| 4 | 내 레포용 프로필을 템플릿에 채운다 | 20분 |
+| 4 | **이 레포의 진짜 이슈**를 warden으로 분류한다 | 10분 |
+| 5 | 내 레포용 프로필을 템플릿에 채운다 | 20분 |
 
 발표 중 라이브 데모로는 1–3을 압축해 **5–7분**에 돌린다.
 
@@ -95,7 +96,27 @@ claude -p --append-system-prompt "$(cat profiles/warden.md)" \
 번갈아 나왔다. 판정은 흔들렸지만 다음 행동은 두 번 다 "댓글로 라우팅 제안"이었다.
 이게 왜 그래도 괜찮은지가 실습의 핵심이다.
 
-### 4. 내 프로필을 쓴다
+### 4. 진짜 이슈를 분류한다
+
+연습은 가상이었다. 이제 **이 저장소의 실제 이슈**로 같은 걸 한다.
+
+- 정본: [이슈 #1 — Labs SSOT](https://github.com/Q00/loop-engineering-labs/issues/1)
+- 분류 대상: [열린 이슈들](https://github.com/Q00/loop-engineering-labs/issues) (#1 제외)
+
+먼저 눈으로 분류한다 — 이슈마다 5-상태 하나 + **정본 #1의 어느 줄이 근거인지**.
+그다음 이 레포의 warden([`agents/warden.md`](../agents/warden.md))에게 같은 걸 시켜
+내 판정과 비교한다. 명령은 그 파일의 "돌리는 법"에 있다:
+
+```bash
+git clone https://github.com/Q00/loop-engineering-labs
+cd loop-engineering-labs
+# agents/warden.md의 "진짜 이슈까지 분류하려면" 블록을 그대로 실행
+```
+
+warden의 출력은 리뷰 노트까지다. **댓글을 달지는 사람이 결정한다** —
+슬라이드 8의 핸드셰이크(인간이 결정, 에이전트가 집행)를 여기서 직접 해보는 것이다.
+
+### 5. 내 프로필을 쓴다
 
 [`warden-profile-template.md`](warden-profile-template.md)의 `<<...>>`를 채운다.
 순서는 슬라이드 9 오른쪽 그대로다.

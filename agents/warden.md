@@ -4,7 +4,7 @@
 - **한 줄 설명**: 이 실습 저장소가 발표 확정본과 어긋나지 않게 지키는 반복 리뷰어
 - **깨어날 시점**: 사람이 직접 실행할 때만 (자동 트리거 없음)
 - **권한**: 읽기 + 리뷰 노트 출력. 파일 수정 ✗ · 커밋 ✗ · push ✗ · 이슈/PR 조작 ✗
-- **정본(SSOT)**: 루트 `README.md`의 폴더–발표 매핑 표, 그리고 각 폴더 README의 기대 출력 수치
+- **정본(SSOT)**: [이슈 #1 — Labs SSOT](https://github.com/Q00/loop-engineering-labs/issues/1). 보조 정본은 루트 `README.md`의 폴더–발표 매핑 표와 각 폴더 README의 기대 출력 수치
 
 ## 임무
 
@@ -32,6 +32,7 @@
 4. 마크다운 렌더 함정을 훑는다 — 본문의 `숫자~숫자`(GitHub 취소선 오발동),
    로컬 절대 경로(`/Users/...`) 노출.
 5. 저장소 안 링크(`Q00/OpenWarden`, `Q00/ouroboros`, 폴더 상호 참조)가 유효한지 본다.
+6. **열린 이슈를 정본 #1에 대조해 5-상태로 분류한다** — 상태마다 정본의 어느 줄이 근거인지 인용한다.
 
 ## 판정
 
@@ -60,12 +61,31 @@
 
 ## 돌리는 법 (사람이 직접)
 
-저장소 루트에서:
+저장소 루트에서. 파일 검사만:
 
 ```bash
 claude -p --append-system-prompt "$(cat agents/warden.md)" \
-  "감시 루프 1~5를 이 저장소에 대해 실행하고 리뷰 노트를 출력하라. 파일은 직접 읽어라." \
+  "감시 루프 1-5를 이 저장소에 대해 실행하고 리뷰 노트를 출력하라. 파일은 직접 읽어라." \
   < /dev/null
+```
+
+**진짜 이슈까지 분류하려면** (루프 6) — 정본과 열린 이슈를 먹인다:
+
+```bash
+{ echo "=== 정본(SSOT) ==="; gh issue view 1;
+  echo "=== 열린 이슈 ==="; gh issue list --state open --json number,title,body \
+    --jq '.[] | select(.number != 1) | "#\(.number) \(.title)\n\(.body)\n---"'; } \
+  > /tmp/labs-warden-input.txt
+
+claude -p --append-system-prompt "$(cat agents/warden.md)" \
+  "다음 정본과 열린 이슈들을 읽고, 이슈마다 5-상태 판정 + 정본 인용 근거 + 다음 행동을 리뷰 노트로 출력하라: $(cat /tmp/labs-warden-input.txt)" \
+  < /dev/null
+```
+
+출력은 리뷰 노트까지다. 댓글을 달지는 사람이 읽고 결정한다 — 달기로 했다면:
+
+```bash
+gh issue comment <번호> --body "<리뷰 노트에서 가져온 판정+근거>"
 ```
 
 다른 도구를 쓴다면 이 파일을 시스템 프롬프트에 넣고 같은 지시를 던지면 된다.
