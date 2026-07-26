@@ -110,7 +110,7 @@ claude -p --append-system-prompt "$(cat profiles/warden.md)" \
 ```bash
 git clone https://github.com/Q00/loop-engineering-labs
 cd loop-engineering-labs
-# agents/warden.md의 "진짜 이슈까지 분류하려면" 블록을 그대로 실행
+# agents/warden.md의 "돌리는 법 (사람이 직접)" 블록을 그대로 실행
 ```
 
 warden의 출력은 리뷰 노트까지다. **댓글을 달지는 사람이 결정한다** —
