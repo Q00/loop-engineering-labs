@@ -61,30 +61,24 @@
 
 ## 돌리는 법 (사람이 직접)
 
-저장소 루트에서. 파일 검사만:
+저장소 루트에서, 한 번에 전부 (루프 1–6):
 
 ```bash
-claude -p --append-system-prompt "$(cat agents/warden.md)" \
-  "감시 루프 1-5를 이 저장소에 대해 실행하고 리뷰 노트를 출력하라. 파일은 직접 읽어라." \
+claude -p \
+  --allowedTools "Bash(gh issue view:*) Bash(gh issue list:*) Bash(gh repo view:*) Bash(gh api repos/*)" \
+  --append-system-prompt "$(cat agents/warden.md)" \
+  "감시 루프 1-6을 이 저장소에 대해 실행하고 리뷰 노트를 출력하라. 파일은 직접 읽고, 정본 이슈 #1과 열린 이슈, 외부 링크는 gh로 확인하라." \
   < /dev/null
 ```
 
-**진짜 이슈까지 분류하려면** (루프 6) — 정본과 열린 이슈를 먹인다:
+`--allowedTools`가 곧 권한 표다 — **읽기 전용 gh만** 열려 있어서, 이 warden은
+댓글·라벨·수정을 하고 싶어도 하네스가 막는다. 프로필의 금지 목록을 말이 아니라
+실행 환경으로 강제하는 것.
+
+출력은 리뷰 노트까지다. 판정을 이슈에 남길지는 **사람이 읽고 결정한다** — 남기기로 했다면:
 
 ```bash
-{ echo "=== 정본(SSOT) ==="; gh issue view 1;
-  echo "=== 열린 이슈 ==="; gh issue list --state open --json number,title,body \
-    --jq '.[] | select(.number != 1) | "#\(.number) \(.title)\n\(.body)\n---"'; } \
-  > /tmp/labs-warden-input.txt
-
-claude -p --append-system-prompt "$(cat agents/warden.md)" \
-  "다음 정본과 열린 이슈들을 읽고, 이슈마다 5-상태 판정 + 정본 인용 근거 + 다음 행동을 리뷰 노트로 출력하라: $(cat /tmp/labs-warden-input.txt)" \
-  < /dev/null
-```
-
-출력은 리뷰 노트까지다. 댓글을 달지는 사람이 읽고 결정한다 — 달기로 했다면:
-
-```bash
+gh issue edit <번호> --add-label "warden:drifting"     # 라벨 (warden:* 5종이 만들어져 있다)
 gh issue comment <번호> --body "<리뷰 노트에서 가져온 판정+근거>"
 ```
 
