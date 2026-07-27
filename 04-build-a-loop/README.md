@@ -51,6 +51,9 @@ python3 miniloop.py run
 wc -l trace.jsonl        # -> 6  (run 1회 기준)
 ```
 
+> 0.333이 아니면: 규칙을 파일 줄 순서로 적용한 구현 — STEP 1 프롬프트를 다시 넣어 고정 순서로 고치게 한다.
+> `wc -l`이 12면: `run`을 두 번 돌린 것 (`trace.jsonl`은 append).
+
 ## STEP 3 · 실패 기록을 읽고 프롬프트 고치기
 
 ```bash
@@ -100,6 +103,8 @@ python3 miniloop.py gate --candidate prompt.worse.txt
 ```
 {"verdict": "reject", "current": 1.0, "candidate": 0.25}
 ```
+
+> 판정이 기대와 다르면: `gate`가 train을 채점하는 구현 — 아래 검토 기준 2를 확인한다.
 
 ## STEP 5 · 결정적 최종 게이트
 
