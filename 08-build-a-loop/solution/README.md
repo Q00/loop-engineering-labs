@@ -9,7 +9,7 @@
 
 ## 검증된 출력
 
-`tasks.json` · `prompt.txt`를 같은 폴더에 두고 실행한 결과입니다. 덱(Talk 4)의 수치와 전부 일치합니다.
+`tasks.json` · `prompt.txt`를 같은 폴더에 두고 실행한 결과입니다. 덱(Talk 8)의 수치와 전부 일치합니다.
 
 ```
 $ python3 miniloop.py run

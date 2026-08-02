@@ -1,7 +1,7 @@
-# Talk 5 실습 — Ouroboros 한 바퀴
+# Talk 9 실습 — Ouroboros 한 바퀴
 
 한 줄짜리 아이디어에서 실행까지, 명령 다섯 개.
-`interview → seed → run → status/tui → qa`. Talk 3의 다섯 단계와 일대일로 대응한다.
+`interview → seed → run → status/tui → qa`. Talk 7의 다섯 단계와 일대일로 대응한다.
 
 각자 **자기 업무 아이디어 한 줄**로 한 바퀴 돈다. 고를 게 없으면 `interview-goal-examples.md`에서 하나 가져다 쓴다.
 
@@ -41,7 +41,7 @@ ooo interview list        # 세션 ID 확인 (다음 단계 입력값)
 ```
 
 따옴표 안은 각자 자기 업무 아이디어로 바꾼다. 한 줄이면 충분하다.
-질문에 답할수록 ambiguity 점수가 내려간다. Talk 3의 입구 게이트 `Ambiguity ≤ 0.2`가 바로 이 종료 조건.
+질문에 답할수록 ambiguity 점수가 내려간다. Talk 7의 입구 게이트 `Ambiguity ≤ 0.2`가 바로 이 종료 조건.
 
 > `ModuleNotFoundError: No module named 'litellm'`이 나오면 기본 백엔드가 litellm인 것.
 > `-o` 또는 `--llm-backend claude_code`로 우회한다.
@@ -60,7 +60,7 @@ ooo seed interview_20260726_014233
 - `exit_conditions` — `acceptance_verified`면 AC가 전부 검증될 때 멈춘다
 - `metadata.ambiguity_score` — 이 spec이 얼마나 덜 모호한지
 
-Talk 4에서 손으로 고친 `prompt.txt` 자리에 오는 것이 이 `seed.yaml`이다. 다른 점은 완료 판정 기준이 파일 안에 같이 들어 있다는 것.
+Talk 8에서 손으로 고친 `prompt.txt` 자리에 오는 것이 이 `seed.yaml`이다. 다른 점은 완료 판정 기준이 파일 안에 같이 들어 있다는 것.
 
 ## STEP 3 · spec을 실행에 넘기기
 
@@ -80,7 +80,7 @@ ooo status run <RUN_ID>         # 실행 하나를 Run/Stage/Step 트리로
 ```
 
 관찰 목표: 실행이 어느 단계에서 시간을 쓰는지, 실패가 어디서 나는지 본다.
-Talk 4의 `trace.jsonl`이 여기서는 `status`와 `tui`가 읽어 주는 이벤트 기록이다.
+Talk 8의 `trace.jsonl`이 여기서는 `status`와 `tui`가 읽어 주는 이벤트 기록이다.
 
 ## STEP 5 · 산출물에 합격선 걸기
 

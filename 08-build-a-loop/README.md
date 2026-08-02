@@ -1,4 +1,4 @@
-# Talk 4 실습 — 루프를 직접 만든다
+# Talk 8 실습 — 루프를 직접 만든다
 
 프롬프트를 스스로 고치는 미니 루프 한 바퀴. `RUN → TRACE → JUDGE → EDIT → GATE`.
 
