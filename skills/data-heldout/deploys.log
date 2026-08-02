@@ -1,0 +1,3 @@
+2026-08-14T09:12:40+09:00 docs-site v2.0.4 (문서 오탈자 수정) — canary 100% clean
+2026-08-14T10:40:18+09:00 search-api v4.1.0 (검색 랭킹 개선; release config: cache_ttl=5) — canary 10%만 확인 후 전체 배포
+2026-08-14T11:28:44+09:00 search-api v4.0.9 ROLLBACK (restores cache_ttl=300) — incident IC approved
