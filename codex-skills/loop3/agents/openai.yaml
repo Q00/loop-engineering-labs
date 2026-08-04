@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loop 3 Codex 실험"
+  short_description: "Codex용 GEPA 지시서 자기개선 루프 실습 및 관찰"
+  default_prompt: "Use $loop3-codex to run the Codex prompt-improvement experiment step by step."

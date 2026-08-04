@@ -1,0 +1,143 @@
+name: evidence-first-postmortem
+version: 0.1
+purpose: >-
+  Convert an incident data bundle into a traceable postmortem draft whose
+  claims are backed by source files and deterministic checks.
+
+variables:
+  WORK_DIR: loop2-work
+  DRAFT: loop2-work/draft.md
+
+inputs:
+  metrics: skills/loop2/data/metrics.jsonl
+  application_log: skills/loop2/data/app.log
+  deployments: skills/loop2/data/deploys.log
+
+artifacts:
+  work_dir: loop2-work
+  draft: loop2-work/draft.md
+  trace: loop2-work/codex-tool-calls.jsonl
+
+trace_schema:
+  required_fields: [ts, tool, purpose, target]
+  rule: append_one_event_per_tool_call
+
+stages:
+  - id: dream
+    name: Dreaming / workflow discovery
+    action: >-
+      Read the recent tool-call trace, identify repeated investigative actions,
+      and propose a reusable sequence with explicit evidence and completion
+      conditions.
+    observed_from_trace:
+      - "exec_command: 지표 계산"
+      - "exec_command: 로그 검색"
+      - "exec_command: 배포 이력 읽기"
+      - "apply_patch: postmortem 초안 작성"
+      - "exec_command: 초안 검증"
+    output: workflow_plan
+
+  - id: plan
+    name: Evidence plan
+    action: >-
+      Bind every expected claim to one or more input files before drafting.
+      Keep metric maxima separate because their timestamps may differ.
+    output: evidence_map
+
+  - id: run
+    name: Evidence collection
+    actions:
+      - id: calculate_metrics
+        tool: exec_command
+        purpose: 지표 계산
+        command: >-
+          python3 -c 'import json; rows=[json.loads(line) for line in
+          open("${WORK_DIR}/metrics.jsonl") if line.strip()];
+          print(max(rows, key=lambda r: r["p95_ms"]));
+          print(max(rows, key=lambda r: r["err_rate_pct"]))'
+        reads: [metrics]
+      - id: search_application_log
+        tool: exec_command
+        purpose: 로그 검색
+        command: "rg -n -i 'ERROR|deploy|rollback' ${WORK_DIR}/app.log"
+        reads: [application_log]
+      - id: read_deployments
+        tool: exec_command
+        purpose: 배포 이력 읽기
+        command: "nl -ba ${WORK_DIR}/deploys.log"
+        reads: [deployments]
+
+  - id: trace
+    name: Tool-call trace
+    action: >-
+      Record purpose and target before each tool call; after each result, note
+      the concrete file, row, timestamp, or number that was confirmed.
+    required_sequence:
+      - calculate_metrics
+      - search_application_log
+      - read_deployments
+      - edit
+      - gate
+
+  - id: judge
+    name: Evidence judgment
+    action: >-
+      Reconcile metric anomalies, application errors, and deployment changes
+      into one causal timeline without inventing unsupported facts.
+    output: judged_evidence
+
+  - id: edit
+    name: Draft postmortem
+    tool: apply_patch
+    purpose: postmortem 초안 작성
+    output: "${DRAFT}"
+    required_sections: [영향, 타임라인, 원인, 근거]
+    required_claims:
+      - "p95 최고값과 시각"
+      - "오류율 최고값과 시각"
+      - "두 최고값의 시각이 다름"
+      - "db_pool_size 50에서 10으로 변경"
+      - "배포와 롤백의 근거 행"
+
+  - id: gate
+    name: Deterministic completion gate
+    action: python3 loop2-work/verify_postmortem.py
+    checks:
+      - id: metric_p95
+        rule: draft_claim_equals_source_max
+        source: metrics
+        field: p95_ms
+        expected: 2500
+        timestamp: "2026-07-12T14:45:00+09:00"
+      - id: metric_error_rate
+        rule: draft_claim_equals_source_max
+        source: metrics
+        field: err_rate_pct
+        expected: 9.8
+        timestamp: "2026-07-12T14:40:00+09:00"
+      - id: source_citations
+        rule: every_citation_matches_numbered_source_line
+        sources: [application_log, deployments]
+      - id: causal_chain
+        rule: contains
+        claims:
+          - "v2.3.1"
+          - "db_pool_size=10"
+          - "connection pool exhausted"
+          - "v2.3.0 롤백"
+      - id: structure
+        rule: required_sections_present
+        sections: [영향, 타임라인, 원인, 근거]
+    on_pass: complete
+    on_fail:
+      metric_p95: run.calculate_metrics
+      metric_error_rate: run.calculate_metrics
+      source_citations: run.search_application_log
+      causal_chain: judge
+      structure: edit
+
+completion:
+  definition: >-
+    The draft is complete only when every gate passes and the trace contains
+    the evidence collection, edit, and verification sequence.
+  current_candidate: loop2-work/draft.md

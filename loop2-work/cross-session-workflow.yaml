@@ -1,0 +1,92 @@
+name: cross-session-workflow-harvest
+version: 0.1
+purpose: >-
+  Mine repeated Codex session behavior into reusable workflows while keeping
+  one-off behavior below the promotion threshold.
+
+scope:
+  session_roots:
+    - /Users/jaegyu.lee/.codex/sessions
+    - /Users/jaegyu.lee/.codex/archived_sessions
+  include_when:
+    cwd: /Users/jaegyu.lee/Project/loop-engineering-labs
+  exclude:
+    - other_projects
+    - plugin_caches
+    - ouroboros_test_traces
+
+promotion_threshold:
+  min_distinct_sessions: 2
+  min_ordered_actions: 3
+  require_artifact_or_gate: true
+
+stages:
+  - id: discover
+    action: locate_session_jsonl
+  - id: normalize
+    action: extract_tool_name_purpose_target_and_paths
+  - id: cluster
+    action: group_by_intent_and_ordered_actions
+  - id: score
+    action: calculate_session_presence_and_repetition_rate
+  - id: propose
+    action: write_candidate_workflow_with_triggers_and_gates
+  - id: gate
+    action: apply_promotion_threshold
+  - id: persist
+    action: write_analysis_and_candidate_config
+
+candidate_workflows:
+  - id: evidence-first-postmortem
+    observed_sessions: 3
+    trigger:
+      any: [incident_analysis, log_analysis, postmortem, root_cause]
+    ordered_actions:
+      - calculate_metrics
+      - search_application_log
+      - read_deployments
+      - draft_artifact
+      - verify_evidence
+    completion_gate:
+      - metric_values_and_timestamps_match_source
+      - numbered_log_citations_exist
+      - required_sections_present
+
+  - id: skill-port-and-validate
+    observed_sessions: 2
+    trigger:
+      any: [codex_skill_install, claude_skill_port, skill_variant]
+    ordered_actions:
+      - inspect_original_skill
+      - isolate_runtime_specific_variant
+      - install_variant
+      - run_minimal_invocation
+      - incorporate_user_feedback
+    completion_gate:
+      - original_skill_preserved
+      - codex_variant_invokes_successfully
+      - one_real_execution_verified
+
+  - id: stepwise-observability
+    observed_sessions: 2
+    trigger:
+      any: [next_step, continue, tail_ready, teaching, tool_call_observation]
+    ordered_actions:
+      - announce_purpose_tool_target
+      - execute_one_action
+      - report_concrete_result
+      - pause_for_confirmation
+    completion_gate:
+      - no_unannounced_tool_call
+      - result_contains_concrete_evidence
+
+  - id: dreaming
+    observed_sessions: 1
+    status: candidate
+    promotion_requires:
+      min_distinct_sessions: 2
+    ordered_actions:
+      - read_recent_traces
+      - identify_repeated_sequence
+      - propose_workflow
+      - validate_against_future_sessions
