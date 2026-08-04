@@ -1,0 +1,6 @@
+{"ts": "2026-08-03T18:15:12+09:00", "tool": "exec_command", "purpose": "지표 계산", "target": "python3 -c 'import json; rows=[json.loads(line) for line in open(\"loop2-work/metrics.jsonl\") if line.strip()]; p=max(rows,key=lambda r:r[\"p95_ms\"]); e=max(rows,key=lambda r:r[\"err_rate_pct\"]); print(\"p95 최고:\", p); print(\"오류율 최고:\", e)'"}
+{"ts": "2026-08-03T18:15:28+09:00", "tool": "exec_command", "purpose": "로그 검색", "target": "rg -n -i 'ERROR|deploy|rollback' loop2-work/app.log"}
+{"ts": "2026-08-03T18:15:55+09:00", "tool": "exec_command", "purpose": "배포 이력 읽기", "target": "nl -ba loop2-work/deploys.log"}
+{"ts": "2026-08-03T18:16:09+09:00", "tool": "exec_command", "purpose": "apply_patch 기록", "target": "python3 /Users/jaegyu.lee/.codex/skills/loop2/record_tool_call.py loop2-work/codex-tool-calls.jsonl apply_patch \"postmortem 초안 작성\" \"loop2-work/draft.md\""}
+{"ts": "2026-08-03T18:16:09+09:00", "tool": "apply_patch", "purpose": "postmortem 초안 작성", "target": "loop2-work/draft.md"}
+{"ts": "2026-08-03T18:16:37+09:00", "tool": "exec_command", "purpose": "초안 검증", "target": "nl -ba loop2-work/draft.md"}
