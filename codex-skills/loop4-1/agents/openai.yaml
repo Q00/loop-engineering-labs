@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loop 4.1 Codex 그래프 실험"
+  short_description: "차트·디자인·빌드·검문 노드와 디자인 수렴 루프 관찰"
+  default_prompt: "Use $loop4-1-codex to run the graph-engineering design loop step by step."
