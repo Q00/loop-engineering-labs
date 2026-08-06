@@ -1,0 +1,3 @@
+2026-07-12T13:10:05+09:00 web-front v5.8.2 (marketing banner update) — canary 100% clean
+2026-07-12T14:05:12+09:00 pay-api v2.3.1 (db client upgrade; release config: db_pool_size=10) — no canary, direct rollout
+2026-07-12T14:52:40+09:00 pay-api v2.3.0 ROLLBACK (restores db_pool_size=50) — incident IC approved

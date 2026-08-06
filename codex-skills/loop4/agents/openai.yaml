@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loop 4 Codex 실험"
+  short_description: "Codex trace를 harvest하고 held-out gate로 스킬 후보를 검증"
+  default_prompt: "Use $loop4-codex to run the Codex harvest, replay, held-out gate, and adoption lab step by step."
