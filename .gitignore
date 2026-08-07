@@ -4,3 +4,11 @@ __pycache__/
 trace.jsonl
 prompt.better.txt
 prompt.worse.txt
+
+# LaTeX 빌드 중간 산출물 (재생성 가능)
+incident-report-build/
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.xdv
