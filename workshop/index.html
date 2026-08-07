@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>내 업무에 루프를 얹는다 · 루프 엔지니어링 실습</title>
+<meta name="description" content="모두를 위한 루프 엔지니어링 심화 실습. 내 세션 기록에서 반복 업무를 캐고, 체크리스트를 만들고, 게이트 달린 루프를 붙인다.">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --bg:#ffffff;
+  --panel:#f5f5f7;
+  --ink:#1d1d1f;
+  --ink-2:#494949;
+  --ink-3:#6e6e73;
+  --hair:rgba(0,0,0,.12);
+  --hair-soft:rgba(0,0,0,.07);
+  --blue:#0071e3;
+  --blue-tint:rgba(0,113,227,.08);
+  --red:#d70015;
+  --red-tint:#fdf0f0;
+  --green:#007d1b;
+  --green-tint:#f0f9f1;
+  --amber:#8a6400;
+  --amber-tint:#fdf8ec;
+  --orange:#ad5700;
+  --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard Variable",Pretendard,"Segoe UI",Roboto,sans-serif;
+  --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --spring:cubic-bezier(0.32,0.72,0,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.72;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  line-break:strict;
+  -webkit-font-smoothing:antialiased;
+}
+.lede,.keyline .q{text-wrap:balance}
+::selection{background:rgba(0,113,227,.18)}
+
+/* ---------- OS visibility ---------- */
+body:not(.win) [data-os="win"]{display:none}
+body.win [data-os="mac"]{display:none}
+
+/* ---------- layout ---------- */
+.sheet{max-width:820px;margin:0 auto;padding:0 24px}
+section{padding:80px 0 8px}
+
+/* ---------- top nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.72);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--hair-soft);
+}
+.nav-in{
+  max-width:820px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;gap:2px;height:50px;
+  overflow-x:auto;scrollbar-width:none;
+}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{
+  font-size:12.5px;color:var(--ink-3);text-decoration:none;
+  padding:5px 10px;border-radius:999px;white-space:nowrap;
+  transition:color .2s,background .2s;
+}
+.nav a:hover{color:var(--ink)}
+.nav a.on{color:var(--ink);background:var(--panel);font-weight:600}
+.os-seg{
+  display:flex;gap:2px;background:var(--panel);border-radius:999px;padding:3px;
+  margin-left:auto;flex-shrink:0;
+}
+.os-seg button{
+  font-family:var(--sans);font-size:12px;font-weight:600;border:none;cursor:pointer;
+  background:transparent;color:var(--ink-3);padding:4px 13px;border-radius:999px;
+  transition:background .2s,color .2s,transform .25s var(--spring);
+}
+.os-seg button:active{transform:scale(.95)}
+.os-seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+
+/* ---------- hero ---------- */
+.hero{padding:92px 0 56px}
+.eyebrow{font-size:14px;font-weight:600;color:var(--blue);margin-bottom:14px}
+.hero h1{
+  font-size:clamp(2.4rem,6.3vw,3.8rem);font-weight:800;
+  letter-spacing:-.022em;line-height:1.16;text-wrap:balance;
+}
+.hero .sub{
+  font-size:clamp(1.02rem,2vw,1.16rem);color:var(--ink-3);
+  max-width:640px;margin-top:22px;line-height:1.68;letter-spacing:-.008em;
+}
+.hero .sub strong{color:var(--ink);font-weight:600}
+.deliv{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.deliv span{
+  font-size:13px;background:var(--panel);border-radius:999px;
+  padding:8px 16px;color:var(--ink-2);
+}
+.deliv span b{font-weight:600;color:var(--ink)}
+.hero .eyebrow,.hero h1,.hero .sub,.hero .deliv{
+  opacity:0;transform:translateY(14px);
+  animation:rise .7s var(--spring) forwards;
+}
+.hero h1{animation-delay:.06s}
+.hero .sub{animation-delay:.12s}
+.hero .deliv{animation-delay:.18s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---------- section head ---------- */
+.step-tag{font-size:13px;font-weight:700;color:var(--blue);font-family:var(--mono);letter-spacing:.02em}
+h2{
+  font-size:clamp(1.65rem,4vw,2.25rem);font-weight:800;
+  letter-spacing:-.02em;line-height:1.25;margin:8px 0 10px;text-wrap:balance;
+}
+.lede{color:var(--ink-3);max-width:640px;margin-bottom:32px;font-size:1.04rem;letter-spacing:-.006em}
+.lede strong{color:var(--ink);font-weight:600}
+h3{
+  font-size:1.05rem;font-weight:700;letter-spacing:-.01em;
+  margin:44px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+h3 .tick{font-family:var(--mono);font-size:12px;color:var(--blue);font-weight:600}
+p{margin-bottom:14px}
+p.note{font-size:.94rem;color:var(--ink-3)}
+hr.rule{border:none;border-top:1px solid var(--hair-soft);margin:60px 0 0}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:24px 0}
+.card{background:var(--panel);border-radius:18px;padding:22px 22px 18px}
+.card .no{font-size:11.5px;font-weight:600;color:var(--blue);font-family:var(--mono)}
+.card h4{font-size:1rem;font-weight:700;margin:8px 0 8px}
+.card p{font-size:.9rem;color:var(--ink-3);margin:0;line-height:1.62}
+.card p b{color:var(--ink-2);font-weight:600}
+
+/* ---------- callout ---------- */
+.callout{background:var(--panel);border-radius:18px;padding:20px 24px;margin:26px 0;font-size:.96rem}
+.callout.red{background:var(--red-tint)}
+.callout .tag{
+  font-size:11.5px;font-weight:700;letter-spacing:.05em;
+  color:var(--blue);display:block;margin-bottom:8px;font-family:var(--mono);
+}
+.callout.red .tag{color:var(--red)}
+.callout p{margin:0;color:var(--ink-2)}
+.callout p b{color:var(--ink)}
+.callout p+p{margin-top:8px}
+
+/* ---------- recall (강의 슬라이드) ---------- */
+.recall{margin:26px 0;background:var(--panel);border-radius:18px;padding:14px}
+.recall img{width:100%;display:block;border-radius:10px;border:1px solid var(--hair-soft);background:#fff}
+.recall figcaption{
+  font-size:12.5px;color:var(--ink-3);margin-top:10px;padding:0 4px;
+  display:flex;gap:9px;align-items:center;
+}
+.recall .rtag{
+  font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--blue);
+  border:1px solid currentColor;border-radius:5px;padding:1px 7px;flex-shrink:0;
+}
+.recall-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
+.recall-grid .recall{margin:0}
+@media(max-width:640px){.recall-grid{grid-template-columns:1fr}}
+
+/* ---------- keyline ---------- */
+.keyline{margin:42px 0;text-align:center}
+.keyline .q{
+  font-size:clamp(1.3rem,3.1vw,1.75rem);font-weight:800;
+  letter-spacing:-.02em;line-height:1.45;text-wrap:balance;
+}
+.keyline .q .mark{color:var(--blue)}
+.keyline .src{font-size:13px;color:var(--ink-3);margin-top:8px}
+
+/* ---------- table ---------- */
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.93rem}
+th,td{padding:11px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--hair-soft)}
+th{font-size:12px;color:var(--ink-3);font-weight:600;font-family:var(--mono)}
+td b{font-weight:700}
+td code{font-size:.85em}
+
+/* ---------- code ---------- */
+.codewrap{position:relative;margin:18px 0}
+pre{
+  background:var(--panel);border-radius:16px;
+  padding:18px 20px;overflow-x:auto;font-family:var(--mono);
+  font-size:13px;line-height:1.72;color:var(--ink);
+}
+pre .c{color:var(--ink-3)}
+pre .r{color:var(--red);font-weight:600}
+pre .g{color:var(--green)}
+pre .y{color:var(--orange)}
+pre.out{background:var(--green-tint)}
+.outlabel{
+  font-size:11.5px;font-weight:700;color:var(--green);font-family:var(--mono);
+  letter-spacing:.04em;margin:12px 0 6px;
+}
+code{font-family:var(--mono);background:var(--panel);padding:2px 7px;border-radius:6px;font-size:.86em}
+pre code{background:none;padding:0}
+.copy{
+  position:absolute;top:8px;right:8px;
+  font-family:var(--sans);font-size:12px;font-weight:600;
+  background:#fff;color:var(--ink-2);border:1px solid var(--hair);
+  border-radius:999px;padding:5px 13px;cursor:pointer;
+  transition:transform .25s var(--spring),color .2s,border-color .2s;
+}
+.copy:hover{color:var(--ink);border-color:var(--ink-3)}
+.copy:active{transform:scale(.94)}
+.copy.done{color:var(--green);border-color:var(--green)}
+
+/* ---------- stuck ---------- */
+details.stuck{
+  background:var(--amber-tint);border-radius:14px;margin:14px 0;overflow:hidden;
+}
+details.stuck summary{
+  cursor:pointer;padding:13px 18px;font-weight:600;font-size:.92rem;list-style:none;
+  color:var(--amber);display:flex;align-items:center;gap:9px;
+}
+details.stuck summary::before{content:"⚠";font-size:.95rem}
+details.stuck summary::-webkit-details-marker{display:none}
+details.stuck .a{padding:0 18px 16px;font-size:.92rem;color:var(--ink-2)}
+details.stuck .a p{margin-bottom:8px}
+details.stuck .a code{background:#fff}
+details.stuck .a pre{background:#fff}
+
+/* ---------- checkpoint ---------- */
+.checkpoint{
+  background:var(--green-tint);border-radius:18px;padding:18px 22px;margin:30px 0 6px;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.checkpoint input{
+  appearance:none;width:22px;height:22px;border:1.5px solid var(--green);
+  border-radius:50%;flex-shrink:0;margin-top:3px;cursor:pointer;position:relative;
+  background:#fff;transition:background .2s,transform .25s var(--spring);
+}
+.checkpoint input:active{transform:scale(.88)}
+.checkpoint input:checked{background:var(--green)}
+.checkpoint input:checked::after{
+  content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:13px;font-weight:700;
+}
+.checkpoint .t{font-size:.95rem;color:var(--ink-2)}
+.checkpoint .t b{color:var(--green);font-weight:700}
+.checkpoint .t code{background:#fff}
+
+/* ---------- faq ---------- */
+details.faq{border-bottom:1px solid var(--hair-soft)}
+details.faq:first-of-type{border-top:1px solid var(--hair-soft)}
+details.faq summary{
+  cursor:pointer;padding:18px 4px;font-weight:600;font-size:1rem;list-style:none;
+  display:flex;align-items:center;gap:12px;
+}
+details.faq summary::after{
+  content:"";width:8px;height:8px;margin-left:auto;flex-shrink:0;
+  border-right:1.5px solid var(--ink-3);border-bottom:1.5px solid var(--ink-3);
+  transform:rotate(45deg);transition:transform .3s var(--spring);
+}
+details.faq[open] summary::after{transform:rotate(-135deg)}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq .a{padding:0 4px 20px;font-size:.95rem;color:var(--ink-3);max-width:660px}
+
+/* ---------- takeaway ---------- */
+.take{counter-reset:tk;list-style:none;margin:26px 0}
+.take li{
+  counter-increment:tk;display:flex;gap:18px;align-items:baseline;
+  padding:15px 4px;border-bottom:1px solid var(--hair-soft);font-size:1.02rem;
+}
+.take li::before{
+  content:counter(tk,decimal-leading-zero);
+  font-family:var(--mono);font-size:12.5px;color:var(--blue);font-weight:600;flex-shrink:0;
+}
+.take li b{font-weight:700}
+
+/* ---------- footer ---------- */
+footer{
+  margin-top:90px;border-top:1px solid var(--hair-soft);
+  padding:30px 0 60px;font-size:12.5px;color:var(--ink-3);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+footer a{color:var(--ink-2)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s var(--spring),transform .6s var(--spring)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv,.hero .eyebrow,.hero h1,.hero .sub,.hero .deliv{opacity:1;transform:none;transition:none;animation:none}
+  html{scroll-behavior:auto}
+  .copy,.checkpoint input,.os-seg button{transition:none}
+}
+
+/* ---------- print ---------- */
+@media print{
+  .nav,.copy{display:none}
+  .rv{opacity:1;transform:none}
+  section{padding:32px 0 0;break-inside:avoid-page}
+  pre{white-space:pre-wrap}
+  details{display:block}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="목차">
+  <div class="nav-in">
+    <a href="#prep">시작 전</a>
+    <a href="#part1">1 리마인드</a>
+    <a href="#part2">2 캐기</a>
+    <a href="#part3">3 체크리스트</a>
+    <a href="#part4">4 루프</a>
+    <a href="#close">마무리</a>
+    <div class="os-seg" role="group" aria-label="운영체제 선택">
+      <button class="os-btn" data-os-btn="mac">macOS</button>
+      <button class="os-btn" data-os-btn="win">Windows</button>
+    </div>
+  </div>
+</nav>
+
+<div class="sheet">
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <p class="eyebrow">모두를 위한 루프 엔지니어링 · 심화 실습</p>
+  <h1>내 업무에<br>루프를 얹는다</h1>
+  <p class="sub">
+    온라인 강의에서는 준비된 가짜 장애로 루프를 돌렸습니다.
+    이번에는 준비된 데이터가 없습니다. 재료는 <strong>내 세션 기록</strong>입니다.
+    기록에서 반복 업무를 캐고, 체크리스트를 만들고,
+    그 업무에 <strong>게이트 달린 루프</strong>를 붙입니다.
+  </p>
+  <div class="deliv">
+    <span>결과물 ① <b>내 반복 업무 후보</b></span>
+    <span>결과물 ② <b>Seed와 checklist.md</b></span>
+    <span>결과물 ③ <b>게이트 달린 내 루프</b></span>
+  </div>
+</header>
+
+<!-- ================= PREP ================= -->
+<section id="prep" class="rv">
+  <p class="step-tag">시작 전</p>
+  <h2>네 가지 확인</h2>
+
+  <div class="cards">
+    <div class="card">
+      <span class="no">확인 1</span>
+      <h4>평소 쓰던 그 컴퓨터</h4>
+      <p>재료가 세션 기록이라, <b>온라인 강의 실습과 평소 업무를 한 컴퓨터</b>여야 캘 것이 있습니다.</p>
+    </div>
+    <div class="card">
+      <span class="no">확인 2</span>
+      <h4>터미널</h4>
+      <p data-os="mac"><b>⌘ + Space</b> → "터미널" 입력 → Enter.</p>
+      <p data-os="win">시작 메뉴에서 <b>PowerShell</b> 검색. 이 페이지의 Windows 명령은 전부 PowerShell 기준입니다.</p>
+    </div>
+    <div class="card">
+      <span class="no">확인 3</span>
+      <h4>Python 3.10+</h4>
+      <p data-os="mac"><code>python3 --version</code>이 3.10 이상이면 됩니다.</p>
+      <p data-os="win"><code>python --version</code>이 3.10 이상이면 됩니다. Microsoft Store가 열리면 설치 후 PowerShell을 다시 엽니다.</p>
+    </div>
+    <div class="card">
+      <span class="no">확인 4</span>
+      <h4>Claude Code 또는 Codex</h4>
+      <p>이번 실습은 스킬 세 개(<code>/harvest</code> → <code>/checklist</code> → <code>/myloop</code>)로 진행합니다. 로그인 상태만 확인합니다.</p>
+    </div>
+  </div>
+
+  <h3><span class="tick">설치</span>실습 스킬 세 개를 설치한다</h3>
+  <p>Claude Code를 열고 아래를 붙여넣습니다. 이 페이지에서 붙여넣는 것은 이 한 번뿐입니다.</p>
+  <div class="codewrap">
+    <button class="copy" data-copy>복사</button>
+    <pre><code>https://github.com/Q00/loop-engineering-labs 를 임시 폴더에 클론하고 실습 스킬을 설치해 줘.
+- 네가 Claude Code면: skills/install.sh 를 실행해 줘. bash가 안 되면 같은 내용을 직접:
+  skills 의 harvest·checklist·myloop 폴더를 ~/.claude/skills 로 복사하고,
+  skills/_shared 의 sleep_harvest.py 와 trace_read.py 를 ~/.claude/skills/harvest 에 복사.
+- 네가 Codex면: codex-skills/install.sh 를 실행해 줘. 안 되면 codex-skills 의
+  harvest·checklist·myloop 폴더를 ~/.codex/skills 로 복사.
+끝나면 설치된 스킬 목록을 보여줘.</code></pre>
+  </div>
+  <details class="stuck">
+    <summary>막혔을 때: 설치했는데 /harvest가 안 뜬다</summary>
+    <div class="a"><p>Claude Code를 닫았다 다시 엽니다. 스킬 목록은 시작할 때 읽힙니다.</p></div>
+  </details>
+
+  <div class="checkpoint">
+    <input type="checkbox" data-save id="cp-0">
+    <p class="t"><b>체크포인트</b>: 새로 연 Claude Code에서 <code>/harvest</code>를 치면 스킬이 뜹니다.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ================= PART 1 ================= -->
+<section id="part1" class="rv">
+  <p class="step-tag">PART 1</p>
+  <h2>배운 것이 오늘 어디에 있는지</h2>
+  <p class="lede">
+    온라인 강의의 실습 다섯 개를 한 줄씩 되짚고,
+    각 강의의 개념이 이번 실습 어디에 들어가는지 먼저 봅니다.
+  </p>
+
+  <h3><span class="tick">1-A</span>실습을 이렇게 해왔습니다</h3>
+  <table>
+    <thead><tr><th>실습</th><th>했던 것</th><th>이번에는</th></tr></thead>
+    <tbody>
+      <tr><td><b>/loop2</b></td><td>가짜 장애로 postmortem을 시키고, 툴콜이 로그 파일에 실시간으로 쌓이는 것을 봤다</td><td>그 로그가 재료입니다 (PART 2)</td></tr>
+      <tr><td><b>/loop3</b></td><td>부실한 지시서로 시작해, 피드백을 반영할수록 점수가 오르는 것을 봤다</td><td>내 지시서를 같은 방식으로 고칩니다 (PART 4)</td></tr>
+      <tr><td><b>/loop4</b></td><td>세션 기록에서 반복 과업을 캐고(harvest·mine), 안 본 장애(heldout)로 검증했다</td><td>같은 harvest를 내 기록에 돌립니다 (PART 2)</td></tr>
+      <tr><td><b>/loop4-1</b></td><td>디자인 노드에 위임하고, 본문이 그대로인지 코드로 확인했다</td><td>루프가 자라면 노드를 나눕니다 (PART 4 끝)</td></tr>
+      <tr><td><b>/loop5</b></td><td>보고서의 인용·수치를 검문기로 대조해 PASS까지 수렴시켰다</td><td>체크리스트가 그 검문기의 씨앗입니다 (PART 3)</td></tr>
+    </tbody>
+  </table>
+
+  <h3><span class="tick">1-B</span>개념이 들어가는 자리</h3>
+  <div class="recall-grid">
+    <figure class="recall">
+      <img src="assets/loop-workshop/t1-universal-loop.png" alt="1강 슬라이드: RUN, TRACE, JUDGE, EDIT, GATE 다섯 노드의 보편 루프" loading="lazy">
+      <figcaption><span class="rtag">1강</span>보편 루프. PART 4에서 내 업무에 답니다</figcaption>
+    </figure>
+    <figure class="recall">
+      <img src="assets/loop-workshop/t2-word-vs-record.png" alt="2강 슬라이드: 말은 요약이고 기록은 전수라 검증 가능하다" loading="lazy">
+      <figcaption><span class="rtag">2강</span>말은 요약, 기록은 전수. PART 2의 재료가 이 기록입니다</figcaption>
+    </figure>
+    <figure class="recall">
+      <img src="assets/loop-workshop/t1-judge-spectrum.png" alt="1강 슬라이드: JUDGE의 스펙트럼, 어디에 선을 그을 것인가" loading="lazy">
+      <figcaption><span class="rtag">1강</span>JUDGE 스펙트럼. PART 3에서 규칙을 왼쪽으로 내리는 잣대</figcaption>
+    </figure>
+    <figure class="recall">
+      <img src="assets/loop-workshop/t5-verify-rules.png" alt="5강 슬라이드: 검문 5종, 검문관은 코드" loading="lazy">
+      <figcaption><span class="rtag">5강</span>검문관은 코드. PART 3 체크리스트가 도착할 모습</figcaption>
+    </figure>
+    <figure class="recall">
+      <img src="assets/loop-workshop/t3-prompt-loop.png" alt="3강 슬라이드: 바뀌는 것은 지시서 한 파일" loading="lazy">
+      <figcaption><span class="rtag">3강</span>바뀌는 것은 지시서 한 파일. PART 4의 EDIT</figcaption>
+    </figure>
+    <figure class="recall">
+      <img src="assets/loop-workshop/t4-heldout.png" alt="4강 슬라이드: train만 보면 암기와 학습이 같은 점수다" loading="lazy">
+      <figcaption><span class="rtag">4강</span>train만 보면 암기와 학습이 같은 점수. PART 4의 게이트</figcaption>
+    </figure>
+    <figure class="recall">
+      <img src="assets/loop-workshop/t1-gate-off.png" alt="1강 슬라이드: GATE를 끄면 0.554가 0.026까지 무너지는 곡선" loading="lazy">
+      <figcaption><span class="rtag">1강</span>GATE를 끄면 생기는 일. PART 4에서 reject로 확인합니다</figcaption>
+    </figure>
+    <figure class="recall">
+      <img src="assets/loop-workshop/t41-graph.png" alt="4.1강 슬라이드: 검문 둘로 나뉘는 그래프와 노드·엣지·상태·권한" loading="lazy">
+      <figcaption><span class="rtag">4.1강</span>검증이 달라지는 자리가 노드를 나눌 자리. 루프가 자란 다음</figcaption>
+    </figure>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ================= PART 2 ================= -->
+<section id="part2" class="rv">
+  <p class="step-tag">PART 2</p>
+  <h2>내 기록에서 반복을 캔다</h2>
+  <p class="lede">
+    "요즘 뭘 반복하지?"를 기억으로 떠올리지 않습니다.
+    <strong>/harvest</strong>를 치면 4강의 harvest가 내 지난 일주일 기록에 돕니다.
+  </p>
+
+  <div class="codewrap">
+    <pre><code>/harvest</code></pre>
+  </div>
+  <p>여기부터는 스킬이 진행합니다. 세션 기록을 캐서 반복 목록을 보여주고,
+  <b>"다음 주에도 또 할 일"</b> 하나를 같이 고르고, 그 업무의 과거 산출물 2~3개를 찾아
+  <code>~/loop-workshop/my-task.md</code>에 기록합니다. 명령은 전부 스킬이 실행합니다.</p>
+
+  <p class="outlabel">스킬이 보여줄 목록의 형태: 숫자와 내용은 사람마다 다릅니다</p>
+  <pre class="out"><code>harvest  세션 43개 (최근 168시간)
+요청 447건 · 위임 86건 · 산출물 편집 1296회 · 검증 실행 282회
+
+mine 1: 반복해서 손댄 산출물
+mine 2: 반복해서 맡긴 과업
+mine 3: 사람이 직접 친 요청
+
+이 목록에서 '다음 주에도 또 할 일'을 하나 고르면 그것이 루프 후보다.</code></pre>
+  <details class="stuck">
+    <summary>막혔을 때: /harvest가 없다고 나온다</summary>
+    <div class="a"><p>시작 전의 설치를 하고, AI 도구를 닫았다 다시 엽니다.</p></div>
+  </details>
+  <details class="stuck">
+    <summary>막혔을 때: 세션이 0개로 나온다</summary>
+    <div class="a"><p>스킬이 기간을 늘려 다시 캐거나 대화로 목록을 함께 만듭니다. 안내를 따르면 됩니다. 평소 쓰던 컴퓨터가 맞는지도 확인하세요.</p></div>
+  </details>
+
+  <div class="checkpoint">
+    <input type="checkbox" data-save id="cp-2">
+    <p class="t"><b>체크포인트</b>: 반복 업무 1개 + 과거 산출물 경로가 <code>my-task.md</code>에 저장됨. 결과물 ①입니다.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ================= PART 3 ================= -->
+<section id="part3" class="rv">
+  <p class="step-tag">PART 3</p>
+  <h2>Seed를 만들고, 체크리스트로 쓴다</h2>
+  <p class="lede">
+    5강의 검문기는 규칙 표에서 시작했습니다. <strong>/checklist</strong>는
+    Ouroboros 인터뷰로 내 업무의 <strong>Seed</strong>를 만들고,
+    그 acceptance criteria를 우리 루프의 checklist.md로 바꿉니다.
+  </p>
+
+  <div class="codewrap">
+    <pre><code>/checklist</code></pre>
+  </div>
+  <p>스킬이 진행하는 일: 과거 산출물에서 규칙 후보 10개를 캐서 <b>인터뷰의 답 재료</b>로 준비하고,
+  Ouroboros가 없으면 설치를 돕습니다 (macOS는 설치 스크립트를 스킬이 실행,
+  Windows는 <a href="https://ouroboros.is/#/desktop">ouroboros.is/#/desktop</a> 데스크톱 앱).
+  새 터미널에서 <code>ooo interview</code>를 끝까지 진행하면 Seed가 만들어지고,
+  스킬이 acceptance criteria를 <b>규칙 5개 이하의 checklist.md</b>로 변환합니다.
+  마지막으로 체크리스트만 아는 서브에이전트가 과거 산출물 하나를 판정해 내 판정과 대조합니다.</p>
+
+  <div class="callout">
+    <span class="tag">Seed의 쓰임</span>
+    <p>이 Seed로 ooo를 돌리지는 않습니다. 오늘 Seed는 <b>판정 기준의 원천</b>입니다. 모호했던 업무 한 줄이 닫힌 명세가 되는 것까지가 오늘의 경험이고, 루프가 자리 잡은 뒤 같은 Seed로 <code>ooo run</code>을 시도할 수 있습니다. 그때도 이 checklist가 게이트가 됩니다.</p>
+  </div>
+
+  <details class="stuck">
+    <summary>막혔을 때: 인터뷰 질문에 뭐라고 답할지 모르겠다</summary>
+    <div class="a"><p>질문을 스킬에게 옮겨 말하면, 준비해 둔 규칙 후보와 과거 산출물에서 근거를 찾아 답안을 만들어 줍니다. 인터뷰는 끝까지 완주해야 Seed가 닫힙니다.</p></div>
+  </details>
+
+  <div class="checkpoint">
+    <input type="checkbox" data-save id="cp-3">
+    <p class="t"><b>체크포인트</b>: Seed 파일 + 규칙 5개 이하의 <code>checklist.md</code>, 그리고 서브에이전트 판정이 내 판정과 일치. 결과물 ②입니다.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ================= PART 4 ================= -->
+<section id="part4" class="rv">
+  <p class="step-tag">PART 4</p>
+  <h2>루프를 붙인다</h2>
+  <p class="lede">
+    보편 루프의 다섯 노드를 내 업무에 답니다. <strong>/myloop</strong>이
+    tasks 분리부터 하네스까지 만들고, 나는 <strong>검수 두 곳과 기각 한 번</strong>을 확인합니다.
+  </p>
+
+  <div class="codewrap">
+    <pre><code>/myloop</code></pre>
+  </div>
+  <p>스킬이 진행하는 일: 과거 산출물을 train/heldout으로 나눠 tasks.json을 만들고
+  (heldout 내용은 펼쳐 보이지 않습니다), checklist 기반의 하네스
+  <code>miniloop.py</code>(run/trace/gate)를 만듭니다. 내가 볼 것은 셋뿐입니다.</p>
+
+  <table>
+    <thead><tr><th>확인</th><th>방법</th><th>통과 기준</th></tr></thead>
+    <tbody>
+      <tr><td>gate가 heldout만 보는가</td><td>스킬이 보여주는 코드를 눈으로</td><td>gate에 train이 없다</td></tr>
+      <tr><td>점수가 결정적인가</td><td><code>run</code> 두 번</td><td>완전히 같은 출력</td></tr>
+      <tr><td>거부권이 작동하는가</td><td>규칙 하나 뺀 지시서로 <code>gate</code></td><td><code>{"verdict": "reject", ...}</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout red">
+    <span class="tag">지금 벌어진 일</span>
+    <p>내 업무 지시서에, 나쁜 수정이 들어오는 걸 막는 장치가 붙었습니다. <b>누가 무엇을 제안하든, 한 번도 안 본 heldout 점수가 거부권을 쥡니다.</b> 1강에서 이 검문 하나를 껐더니 0.554가 0.026이 됐습니다.</p>
+  </div>
+
+  <h3><span class="tick">확장</span>루프가 자라면</h3>
+  <div class="keyline">
+    <p class="q">"<span class="mark">검증이 달라지는 자리</span>가 노드를 나눌 자리입니다."</p>
+    <p class="src">— 4.1강</p>
+  </div>
+  <p>
+    이 루프의 출력에, 체크리스트와 <b>다른 방법으로 확인해야 하는 성질</b>이 또 있습니까?
+    4.1강에서 내용은 데이터와 대조했고 디자인은 픽셀을 봐야 했던 것처럼요.
+    있다면 그 성질이 두 번째 노드가 되고, 두 노드 사이의 권한은 사람이 믿는 게 아니라 코드가 확인합니다.
+  </p>
+  <div class="callout red">
+    <span class="tag">경고: 4.1강의 넷째 줄</span>
+    <p><b>대부분의 일은 그래프가 필요 없습니다.</b> 한 가지 일에 검증자 하나면 그건 루프입니다. 근거 없이 나누면 없던 분산 시스템 문제를 사서 떠안습니다. <b>먼저 그래프를 그리고, 필요해지면 도구를 붙입니다.</b></p>
+  </div>
+
+  <div class="checkpoint">
+    <input type="checkbox" data-save id="cp-4">
+    <p class="t"><b>체크포인트</b>: 내 데이터에서 <code>reject</code> 한 번. 결과물 ③입니다.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ================= CLOSE ================= -->
+<section id="close" class="rv">
+  <p class="step-tag">마무리</p>
+  <h2>핵심 정리</h2>
+
+  <ol class="take">
+    <li><span>반복은 기억이 아니라 <b>기록에서</b> 캔다. harvest 1위가 첫 후보다.</span></li>
+    <li><span>체크리스트는 실패에서 나온다. "왜 아니었지"의 답이 규칙 문장이다.</span></li>
+    <li><span>규칙으로 내릴 수 있는 판정은 전부 <b>왼쪽(결정적)으로</b> 내린다. 못 내린 것이 육안 몫이다.</span></li>
+    <li><span>지시서는 루프가 고치고, <b>채택은 GATE가</b> 결정한다. heldout은 열어 보지 않는다.</span></li>
+    <li><span>노드는 <b>검증이 달라지는 자리</b>에서만 나눈다.</span></li>
+  </ol>
+
+  <h3><span class="tick">다음 반복</span>실습이 끝난 뒤</h3>
+  <p>
+    다음에 이 업무를 실제로 할 때는 <b>하네스 안에서</b> 처리하고, 출력을 tasks에 한 줄 보탭니다.
+    한 달에 한 번쯤 harvest를 다시 돌리면 다음 루프 후보가 나옵니다.
+    heldout은 주기를 정해 갈아 끼우되, 갈아 끼우기 전까지는 열어 보지 않습니다.
+  </p>
+
+  <h3 style="margin-top:52px"><span class="tick">FAQ</span>자주 나온 질문</h3>
+  <details class="faq">
+    <summary>harvest 목록에 업무다운 게 없습니다. 코드 편집뿐이에요.</summary>
+    <div class="a">mine 1(산출물)만 보지 말고 mine 2(맡긴 과업)와 mine 3(직접 친 요청)을 보세요. "매주 보고서 초안", "회의록 정리해줘"처럼 반복해서 시킨 문장이 곧 업무입니다. 그래도 없으면 AI 도구 밖에서 하는 반복 업무(메일, 문서)를 하나 골라도 됩니다. PART 3부터는 똑같이 갑니다.</div>
+  </details>
+  <details class="faq">
+    <summary>내 업무는 판정이 거의 다 "느낌"인데요.</summary>
+    <div class="a">그 느낌을 만든 최근 실패 세 건을 적어 봅니다. "왜 아니었지?"의 답은 대개 규칙 문장이 됩니다("숫자가 틀렸다", "너무 길었다"). 그렇게 캐낸 규칙 두세 개로 시작하고, 규칙이 못 보는 부분은 육안 몫으로 남깁니다. PASS는 하한선이고 그 위는 사람 몫입니다.</div>
+  </details>
+  <details class="faq">
+    <summary>과거 산출물에 expected(정답)가 없습니다.</summary>
+    <div class="a">expected는 정답 전문이 아니어도 됩니다. 체크리스트가 볼 것만 있으면 됩니다. 들어가야 할 항목 목록, 일치해야 할 수치처럼요. 5강의 검문기가 보고서 전문이 아니라 인용·수치만 대조했던 것과 같습니다.</div>
+  </details>
+  <details class="faq">
+    <summary>하네스를 팀에 어떻게 퍼뜨리죠?</summary>
+    <div class="a">checklist.md와 tasks가 이미 파일이므로 저장소에 올리는 것부터 시작합니다. 동료의 실패 사례가 tasks에 쌓이는 순간부터 팀의 루프가 됩니다. 단, heldout 관리자는 한 명으로 정합니다. 모두가 heldout을 들여다보면 그건 더 이상 heldout이 아닙니다.</div>
+  </details>
+</section>
+
+<footer>
+  <span>모두를 위한 루프 엔지니어링 · 심화 실습 · © 2026 Jaegyu Lee</span>
+  <span><a href="https://github.com/Q00/ouroboros">Q00/ouroboros</a> · <a href="https://github.com/Q00/OpenWarden">Q00/OpenWarden</a></span>
+</footer>
+
+</div><!-- /sheet -->
+
+<script>
+// ---------- OS toggle ----------
+const OSKEY='loop-workshop-os';
+function setOS(os){
+  document.body.classList.toggle('win',os==='win');
+  document.querySelectorAll('[data-os-btn]').forEach(b=>b.classList.toggle('on',b.dataset.osBtn===os));
+  localStorage.setItem(OSKEY,os);
+}
+document.querySelectorAll('[data-os-btn]').forEach(b=>{
+  b.addEventListener('click',()=>setOS(b.dataset.osBtn));
+});
+setOS(localStorage.getItem(OSKEY)||(/win/i.test(navigator.platform||'')?'win':'mac'));
+
+// ---------- localStorage persistence ----------
+const KEY='loop-workshop-v3';
+const store=JSON.parse(localStorage.getItem(KEY)||'{}');
+document.querySelectorAll('[data-save]').forEach(el=>{
+  const id=el.id;if(!id)return;
+  if(el.type==='checkbox'){el.checked=!!store[id];}
+  else if(store[id]!=null){el.value=store[id];}
+  el.addEventListener('input',()=>{
+    store[id]=el.type==='checkbox'?el.checked:el.value;
+    localStorage.setItem(KEY,JSON.stringify(store));
+  });
+});
+
+// ---------- copy buttons ----------
+document.querySelectorAll('[data-copy]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const code=btn.parentElement.querySelector('pre').innerText;
+    navigator.clipboard.writeText(code).then(()=>{
+      btn.textContent='복사됨';btn.classList.add('done');
+      setTimeout(()=>{btn.textContent='복사';btn.classList.remove('done');},1600);
+    });
+  });
+});
+
+// ---------- scroll reveal ----------
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+}),{threshold:.05});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// ---------- nav highlight ----------
+const links=[...document.querySelectorAll('.nav a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const io2=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('on'));
+      const i=secs.indexOf(e.target);
+      if(i>=0)links[i].classList.add('on');
+    }
+  });
+},{rootMargin:'-25% 0px -60% 0px'});
+secs.forEach(s=>s&&io2.observe(s));
+</script>
+</body>
+</html>

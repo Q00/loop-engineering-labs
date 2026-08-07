@@ -20,5 +20,14 @@ cp _shared/sleep_harvest.py ~/.claude/skills/loop4/sleep_harvest.py
 rm -rf ~/.claude/skills/loop4/heldout
 cp -R data-heldout ~/.claude/skills/loop4/heldout
 echo "loop4: sleep_harvest.py + heldout 데이터 추가"
+# 오프라인 워크숍 스킬 3종: /harvest → /checklist → /myloop
+for s in harvest checklist myloop; do
+  rm -rf ~/.claude/skills/$s
+  cp -R $s ~/.claude/skills/$s
+  echo "installed: ~/.claude/skills/$s"
+done
+cp _shared/sleep_harvest.py _shared/trace_read.py ~/.claude/skills/harvest/
+echo "harvest: sleep_harvest.py + trace_read.py 추가"
 echo
 echo "Claude Code를 다시 열고 /loop2 부터 /loop5 까지 실행한다."
+echo "오프라인 워크숍은 /harvest → /checklist → /myloop 순서다."
