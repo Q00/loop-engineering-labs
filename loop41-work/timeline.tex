@@ -1,0 +1,19 @@
+% timeline.tex: make_chart.py가 app.log에서 생성했다. 손으로 고치지 않는다.
+\begin{tikzpicture}
+  \draw[wash, line width=2.6pt] (0,0) -- (11.0,0);
+  \fill[brand] (0.00,0) circle (2.6pt);
+  \node[font=\scriptsize\bfseries, text=ink, anchor=south] at (0.00,0.20) {배포};
+  \node[font=\tiny, text=mut, anchor=north] at (0.00,-0.20) {14:05};
+  \fill[brand] (2.89,0) circle (2.6pt);
+  \node[font=\scriptsize\bfseries, text=ink, anchor=south] at (2.89,0.20) {첫 오류};
+  \node[font=\tiny, text=mut, anchor=north] at (2.89,-0.20) {14:21};
+  \fill[brand] (4.33,0) circle (2.6pt);
+  \node[font=\scriptsize\bfseries, text=ink, anchor=south] at (4.33,0.20) {페이징};
+  \node[font=\tiny, text=mut, anchor=north] at (4.33,-0.20) {14:29};
+  \fill[brand] (8.48,0) circle (2.6pt);
+  \node[font=\scriptsize\bfseries, text=ink, anchor=south] at (8.48,0.20) {복구};
+  \node[font=\tiny, text=mut, anchor=north] at (8.48,-0.20) {14:52};
+  \fill[brand] (11.00,0) circle (2.6pt);
+  \node[font=\scriptsize\bfseries, text=ink, anchor=south] at (11.00,0.20) {재처리};
+  \node[font=\tiny, text=mut, anchor=north] at (11.00,-0.20) {15:06};
+\end{tikzpicture}

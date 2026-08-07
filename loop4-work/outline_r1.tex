@@ -1,0 +1,311 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage{kotex}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+\usetheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{
+  \hfill
+  \usebeamerfont{footline}\insertframenumber/\inserttotalframenumber
+  \hspace{0.8cm}\vspace{0.25cm}
+}
+
+\definecolor{navy}{RGB}{21,45,78}
+\definecolor{red}{RGB}{190,45,45}
+\definecolor{orange}{RGB}{220,125,25}
+\definecolor{green}{RGB}{35,125,75}
+\definecolor{lightgray}{RGB}{245,247,250}
+
+\setbeamercolor{normal text}{fg=navy}
+\setbeamercolor{frametitle}{fg=navy}
+\setbeamercolor{title}{fg=navy}
+\setbeamercolor{structure}{fg=navy}
+\setbeamercolor{block title}{fg=white,bg=navy}
+\setbeamercolor{block body}{fg=navy,bg=lightgray}
+
+\title{\texttt{pay-api} 장애 보고}
+\subtitle{2026-07-12}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{경영진 요약}
+  \begin{block}{장애}
+    \texttt{pay-api}에서 DB 연결 풀 고갈로 checkout 실패 및 오류율 상승
+  \end{block}
+
+  \vspace{0.25cm}
+
+  \begin{columns}[T]
+    \column{0.32\textwidth}
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.35cm]{block body}
+      \textbf{발생}\\[0.15cm]
+      14:14:03\\
+      DB connection wait 경고
+      \vspace{0.25cm}
+
+      \textbf{해결}\\[0.15cm]
+      15:24:19\\
+      \texttt{err\_rate 0.2\%}
+    \end{beamercolorbox}
+
+    \column{0.32\textwidth}
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.35cm]{block body}
+      \textbf{최대 영향}\\[0.15cm]
+      \texttt{p95\_ms 2500}\\
+      \texttt{err\_rate\_pct 9.8}\\
+      \texttt{rps 280}
+    \end{beamercolorbox}
+
+    \column{0.32\textwidth}
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.35cm]{block body}
+      \textbf{원인}\\[0.15cm]
+      v2.3.1 직접 롤아웃\\
+      \texttt{db\_pool\_size=50 -> 10}
+    \end{beamercolorbox}
+  \end{columns}
+
+  \vspace{0.35cm}
+
+  \begin{block}{복구 조치}
+    \texttt{pay-api} v2.3.0 롤백 완료
+    \quad|\quad
+    \texttt{db\_pool\_size=50} 복원
+    \quad|\quad
+    retry queue 1,208 orders replayed
+  \end{block}
+\end{frame}
+
+\begin{frame}{장애 영향}
+  \begin{columns}[T]
+    \column{0.37\textwidth}
+
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.35cm]{block body}
+      \centering
+      {\color{red}\fontsize{28}{30}\selectfont \textbf{2500 ms}}\\[-0.05cm]
+      \small 최대 \texttt{p95\_ms}
+    \end{beamercolorbox}
+
+    \vspace{0.25cm}
+
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.35cm]{block body}
+      \centering
+      {\color{red}\fontsize{28}{30}\selectfont \textbf{9.8\%}}\\[-0.05cm]
+      \small 최대 \texttt{err\_rate\_pct}
+    \end{beamercolorbox}
+
+    \vspace{0.25cm}
+
+    \begin{beamercolorbox}[wd=\linewidth,sep=0.35cm]{block body}
+      \centering
+      {\color{orange}\fontsize{28}{30}\selectfont \textbf{280}}\\[-0.05cm]
+      \small 최저 \texttt{rps}
+    \end{beamercolorbox}
+
+    \column{0.58\textwidth}
+
+    \begin{block}{장애 구간 지표}
+      \scriptsize
+      \begin{tabular}{>{\ttfamily}l r r r}
+        \toprule
+        time & p95\_ms & err\_rate\_pct & rps \\
+        \midrule
+        14:20 & 600  & 1.8 & 340 \\
+        14:25 & 1400 & 4.2 & 322 \\
+        14:30 & 2100 & 7.5 & 301 \\
+        14:35 & 2400 & 9.1 & 287 \\
+        14:40 & 2450 & 9.8 & 280 \\
+        14:45 & 2500 & 9.6 & 283 \\
+        14:50 & 2380 & 8.9 & 290 \\
+        14:55 & 900  & 3.1 & 315 \\
+        15:00 & 400  & 0.9 & 336 \\
+        15:05 & 260  & 0.4 & 348 \\
+        15:10 & 186  & 0.3 & 368 \\
+        \bottomrule
+      \end{tabular}
+    \end{block}
+  \end{columns}
+
+  \vspace{0.2cm}
+
+  \begin{block}{업무 영향}
+    \texttt{checkout failed: TimeoutError after 3 retries}
+    \quad|\quad
+    retry queue \texttt{1,208 orders replayed}
+  \end{block}
+\end{frame}
+
+\begin{frame}{장애 발생 및 대응 타임라인}
+  \centering
+  \begin{tikzpicture}[x=1.55cm,y=1cm]
+    \draw[navy, very thick] (0,0) -- (8.3,0);
+
+    \foreach \x/\time/\label/\color in {
+      0/14:05:12/{v2.3.1 rollout\\\texttt{db\_pool\_size=10}}/orange,
+      1.35/14:14:03/{connection wait\\820ms}/orange,
+      2.55/14:21:03/{pool exhausted\\\texttt{waiters=142}}/red,
+      3.75/14:29:02/{oncall paged\\\texttt{err\_rate 7.5\%}}/red,
+      5.05/14:41:37/{config diff found\\\texttt{50 -> 10}}/navy,
+      6.25/14:47:20/{rollback approved\\by IC}/navy,
+      7.35/14:52:40/{v2.3.0 rollback\\complete}/green,
+      8.3/15:24:19/{resolved\\\texttt{err\_rate 0.2\%}}/green
+    }{
+      \fill[\color] (\x,0) circle (0.11);
+      \draw[\color, thick] (\x,0.11) -- (\x,0.65);
+      \node[align=center, anchor=south] at (\x,0.7) {\scriptsize \textbf{\time}\\[-0.02cm]\scriptsize \label};
+    }
+
+    \node[anchor=north west, align=left] at (0,-0.35) {
+      \scriptsize
+      \texttt{db connection wait 1,940ms} at 14:18:56\\
+      \texttt{waiters=301} at 14:26:15 \quad|\quad \texttt{waiters=463} at 14:35:29\\
+      \texttt{waiters=497} at 14:44:55
+    };
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{원인}
+  \begin{center}
+    \begin{tikzpicture}[
+      node distance=1.0cm,
+      box/.style={
+        draw=navy,
+        rounded corners=2pt,
+        minimum width=3.0cm,
+        minimum height=1.0cm,
+        align=center,
+        fill=lightgray
+      },
+      arrow/.style={->, very thick, navy}
+    ]
+      \node[box] (release) {\texttt{pay-api v2.3.1}\\db client upgrade};
+      \node[box, right=of release, fill=orange!15] (config) {
+        release config\\
+        \texttt{db\_pool\_size=10}
+      };
+      \node[box, right=of config, fill=red!15] (pool) {
+        DB connection\\
+        pool exhausted
+      };
+      \node[box, right=of pool, fill=red!15] (checkout) {
+        checkout failed\\
+        TimeoutError
+      };
+
+      \draw[arrow] (release) -- (config);
+      \draw[arrow] (config) -- (pool);
+      \draw[arrow] (pool) -- (checkout);
+
+      \node[below=0.65cm of config, align=center] {
+        \small v2.3.0 release config\\
+        \texttt{db\_pool\_size=50}
+      };
+      \draw[navy, thick, dashed] (release.south) to[bend right=25] (config.south);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.45cm}
+
+  \begin{block}{로그에서 확인된 상태}
+    \texttt{TimeoutError: db connection pool exhausted}\\
+    \texttt{pool\_size=10, waiters=497}
+  \end{block}
+
+  \vspace{0.1cm}
+
+  \centering
+  \scriptsize v2.3.1은 canary 없이 direct rollout
+\end{frame}
+
+\begin{frame}{복구}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+
+    \begin{block}{롤백}
+      \begin{itemize}
+        \item 14:47:20 rollback 승인
+        \item 14:52:40 v2.3.0 rollback 완료
+        \item \texttt{db\_pool\_size=50} 복원
+      \end{itemize}
+    \end{block}
+
+    \column{0.48\textwidth}
+
+    \begin{block}{서비스 회복}
+      \begin{itemize}
+        \item 15:01:33 health check ok
+        \item 15:06:51 retry queue drained
+        \item 1,208 orders replayed
+        \item 15:24:19 \texttt{err\_rate 0.2\%}
+      \end{itemize}
+    \end{block}
+  \end{columns}
+
+  \vspace{0.5cm}
+
+  \begin{center}
+    \begin{tikzpicture}[x=1.9cm]
+      \draw[navy, very thick] (0,0) -- (4,0);
+      \fill[red] (0,0) circle (0.12);
+      \fill[orange] (1.3,0) circle (0.12);
+      \fill[green] (2.7,0) circle (0.12);
+      \fill[green] (4,0) circle (0.12);
+
+      \node[align=center, anchor=north] at (0,-0.15) {\scriptsize 장애\\\texttt{err\_rate 9.8\%}};
+      \node[align=center, anchor=north] at (1.3,-0.15) {\scriptsize 롤백\\v2.3.0};
+      \node[align=center, anchor=north] at (2.7,-0.15) {\scriptsize queue drained\\1,208 orders};
+      \node[align=center, anchor=north] at (4,-0.15) {\scriptsize resolved\\\texttt{err\_rate 0.2\%}};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{장애 결과}
+  \begin{center}
+    \begin{tikzpicture}[
+      box/.style={
+        draw=navy,
+        rounded corners=3pt,
+        minimum width=4.0cm,
+        minimum height=1.25cm,
+        align=center,
+        fill=lightgray
+      },
+      arrow/.style={->, very thick, navy}
+    ]
+      \node[box] (incident) {\texttt{pay-api} 장애};
+      \node[box, right=1.3cm of incident] (rollback) {
+        v2.3.0 rollback\\
+        \texttt{db\_pool\_size=50}
+      };
+      \node[box, right=1.3cm of rollback, fill=green!15] (resolved) {
+        서비스 정상화\\
+        \texttt{err\_rate 0.2\%}
+      };
+
+      \draw[arrow] (incident) -- (rollback);
+      \draw[arrow] (rollback) -- (resolved);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.5cm}
+
+  \begin{block}{최종 상태}
+    \centering
+    \texttt{pay-api} health check ok
+    \quad|\quad
+    retry queue drained
+    \quad|\quad
+    \texttt{err\_rate 0.2\% (SLO 1.0\%)}
+  \end{block}
+\end{frame}
+
+\end{document}

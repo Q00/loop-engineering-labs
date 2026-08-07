@@ -12,3 +12,6 @@ incident-report-build/
 *.fls
 *.synctex.gz
 *.xdv
+
+# 실습 중 외부 리포에서 복사돼 들어온 문서 (내부 자료)
+loop41-work/design_checklist.md

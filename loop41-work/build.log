@@ -1,0 +1,766 @@
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
+ restricted \write18 enabled.
+entering extended mode
+(./outline.styled.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamer.cls
+Document Class: beamer 2026/01/22 v3.77 A class for typesetting presentations
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasedecode.sty)
+) (/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseoptions.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/keyval.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfutil-comm
+on.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfutil-late
+x.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.
+tex (/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/pgf.revision.tex))
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code
+.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibra
+ryfiltered.code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.
+tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathparser.cod
+e.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+basic.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+trigonometric.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+random.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+comparison.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+base.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+round.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+misc.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+integerarithmetics.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.
+tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code
+.tex))) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/size11.clo)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/xetex.def)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.cod
+e.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xet
+ex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvi
+pdfmx.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-com
+mon-pdf.def))))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoft
+path.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprot
+ocol.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.cod
+e.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoin
+ts.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+construct.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+usage.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescop
+es.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregrap
+hicstate.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretran
+sformations.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequic
+k.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobje
+cts.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+processing.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearro
+ws.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshad
+e.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimag
+e.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexte
+rnal.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelaye
+rs.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretran
+sparency.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatt
+erns.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.
+code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/utilities/xxcolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/atbegshi-ltx.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.
+sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+ (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/gettitlestring/gettitlestr
+ing.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)
+)
+
+Package hyperref Message: Stopped early.
+
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hxetex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/rerunfilecheck/rerunfilechec
+k.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/uniquecounter/uniquecounte
+r.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaserequires.st
+y
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasecompatibili
+ty.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasefont.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetranslator.
+sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasemisc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetwoscreens.
+sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetitle.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasesection.sty
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseframe.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseverbatim.st
+y)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseframesize.s
+ty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseframecompon
+ents.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasecolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasenotes.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetoc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetemplates.s
+ty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseauxtemplate
+s.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseboxes.sty))
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaselocalstruct
+ure.sty (/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/enumerate.sty)
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasenavigation.
+sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasenavigations
+ymbols.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetheorems.st
+y (/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amscls/amsthm.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasethemes.sty)
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerthemedefault.st
+y
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerfontthemedefaul
+t.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamercolorthemedefau
+lt.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerinnerthemedefau
+lt.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerouterthemedefau
+lt.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-xetex.de
+f)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/xelatex/xecjk/xeCJK.sty
+
+LaTeX Warning: You have requested release `2026/06/01' of LaTeX,
+               but only release `2025-11-01' is available.
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/ctex/ctexhook.sty
+
+LaTeX Warning: You have requested release `2026/06/01' of LaTeX,
+               but only release `2025-11-01' is available.
+
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3packages/xtemplate/xtempla
+te.sty) (/usr/local/texlive/2026basic/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/modules/pgfmoduleshape
+s.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.
+code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-ve
+rsion-0-65.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-ve
+rsion-1-18.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgffor.code.
+tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tik
+z.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/pgflibrarypl
+othandlers.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/modules/pgfmodulematri
+x.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibrarytopaths.code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.revision
+.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotscore.code
+.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysge
+neric.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibr
+ary.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pg
+fplotsoldpgfsupp_loader.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/pgflibraryfp
+u.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pg
+fplotsoldpgfsupp_pgfutil-common-lists.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil
+.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsliststructure.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsliststructureext.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsarray.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsmatrix.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/numtable/pgfplots
+tableshared.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsdeque.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotsbina
+ry.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotsbina
+ry.data.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil
+.verb.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypg
+fplots.surfshading.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgf
+plots.surfshading.pgfsys-xetex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgf
+plots.surfshading.pgfsys-dvipdfmx.def))))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotscolo
+rmap.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotscolo
+r.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsstackedpl
+ots.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsplothandl
+ers.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsmeshploth
+andler.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsmeshploti
+mage.code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.
+code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotscoordproc
+essing.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.errorbar
+s.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.markers.
+code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsticks.cod
+e.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.paths.co
+de.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibrarydecorations.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/modules/pgfmoduledecor
+ations.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibrarydecorations.pathmorphing.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/decorations/
+pgflibrarydecorations.pathmorphing.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibrarydecorations.pathreplacing.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/decorations/
+pgflibrarydecorations.pathreplacing.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/libs/tikzlibraryp
+gfplots.contourlua.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibraryplotmarks.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/pgflibrarypl
+otmarks.code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerfontthemeprofes
+sionalfonts.sty) (./outline.styled.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+(./outline.styled.out) (./outline.styled.out)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-basic-
+dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-biblio
+graphy-dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-enviro
+nment-dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-months
+-dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-number
+s-dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-theore
+m-dictionary-English.dict)
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
+
+(./outline.styled.nav) (./kpi.tex)
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 45--45
+[]|[][][][][]  
+[1] (./timeline.tex)
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 55--55
+[]|[][][][][]  
+[2]
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 64--64
+[]|[][][][][]  
+[3] (./chart.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsb.fd))
+Overfull \hbox (41.55173pt too wide) in paragraph at lines 74--74
+[]  
+
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 74--74
+[]|[][][][][]  
+[4]
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 83--83
+[]|[][][][][]  
+[5]
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 92--92
+[]|[][][][][]  
+[6] (./outline.styled.aux) )
+(see the transcript file for additional information)
+Output written on outline.styled.pdf (6 pages).
+Transcript written on outline.styled.log.
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
+ restricted \write18 enabled.
+entering extended mode
+(./outline.styled.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamer.cls
+Document Class: beamer 2026/01/22 v3.77 A class for typesetting presentations
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasemodes.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasedecode.sty)
+) (/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseoptions.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/keyval.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfutil-comm
+on.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfutil-late
+x.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.
+tex (/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/pgf.revision.tex))
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code
+.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibra
+ryfiltered.code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.
+tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathparser.cod
+e.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+basic.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+trigonometric.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+random.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+comparison.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+base.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+round.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+misc.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+integerarithmetics.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.
+tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code
+.tex))) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/size11.clo)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/xetex.def)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.cod
+e.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xet
+ex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvi
+pdfmx.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-com
+mon-pdf.def))))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoft
+path.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprot
+ocol.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.cod
+e.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoin
+ts.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+construct.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+usage.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescop
+es.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregrap
+hicstate.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretran
+sformations.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequic
+k.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobje
+cts.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+processing.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearro
+ws.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshad
+e.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimag
+e.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexte
+rnal.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelaye
+rs.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretran
+sparency.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatt
+erns.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.
+code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/utilities/xxcolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/atbegshi-ltx.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.
+sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+ (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/gettitlestring/gettitlestr
+ing.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)
+)
+
+Package hyperref Message: Stopped early.
+
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/hyperref/hxetex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/rerunfilecheck/rerunfilechec
+k.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/uniquecounter/uniquecounte
+r.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaserequires.st
+y
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasecompatibili
+ty.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasefont.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetranslator.
+sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasemisc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetwoscreens.
+sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetitle.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasesection.sty
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseframe.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseverbatim.st
+y)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseframesize.s
+ty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseframecompon
+ents.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasecolor.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasenotes.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetoc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetemplates.s
+ty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseauxtemplate
+s.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaseboxes.sty))
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbaselocalstruct
+ure.sty (/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/enumerate.sty)
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasenavigation.
+sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasenavigations
+ymbols.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasetheorems.st
+y (/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amscls/amsthm.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerbasethemes.sty)
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerthemedefault.st
+y
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerfontthemedefaul
+t.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamercolorthemedefau
+lt.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerinnerthemedefau
+lt.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerouterthemedefau
+lt.sty)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-xetex.de
+f)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/xelatex/xecjk/xeCJK.sty
+
+LaTeX Warning: You have requested release `2026/06/01' of LaTeX,
+               but only release `2025-11-01' is available.
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/ctex/ctexhook.sty
+
+LaTeX Warning: You have requested release `2026/06/01' of LaTeX,
+               but only release `2025-11-01' is available.
+
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3packages/xtemplate/xtempla
+te.sty) (/usr/local/texlive/2026basic/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/modules/pgfmoduleshape
+s.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.
+code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-ve
+rsion-0-65.sty)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-ve
+rsion-1-18.sty))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/utilities/pgffor.code.
+tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tik
+z.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/pgflibrarypl
+othandlers.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/modules/pgfmodulematri
+x.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibrarytopaths.code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.revision
+.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotscore.code
+.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysge
+neric.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibr
+ary.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pg
+fplotsoldpgfsupp_loader.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/pgflibraryfp
+u.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pg
+fplotsoldpgfsupp_pgfutil-common-lists.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil
+.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsliststructure.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsliststructureext.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsarray.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsmatrix.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/numtable/pgfplots
+tableshared.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/liststructure/pgf
+plotsdeque.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotsbina
+ry.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotsbina
+ry.data.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil
+.verb.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypg
+fplots.surfshading.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgf
+plots.surfshading.pgfsys-xetex.def
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgf
+plots.surfshading.pgfsys-dvipdfmx.def))))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotscolo
+rmap.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/util/pgfplotscolo
+r.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsstackedpl
+ots.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsplothandl
+ers.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsmeshploth
+andler.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsmeshploti
+mage.code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.
+code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotscoordproc
+essing.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.errorbar
+s.code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.markers.
+code.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplotsticks.cod
+e.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/pgfplots.paths.co
+de.tex)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibrarydecorations.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/modules/pgfmoduledecor
+ations.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibrarydecorations.pathmorphing.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/decorations/
+pgflibrarydecorations.pathmorphing.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibrarydecorations.pathreplacing.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/decorations/
+pgflibrarydecorations.pathreplacing.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgfplots/libs/tikzlibraryp
+gfplots.contourlua.code.tex))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/frontendlayer/tikz/lib
+raries/tikzlibraryplotmarks.code.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pgf/libraries/pgflibrarypl
+otmarks.code.tex)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/beamer/beamerfontthemeprofes
+sionalfonts.sty) (./outline.styled.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+(./outline.styled.out) (./outline.styled.out)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-basic-
+dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-biblio
+graphy-dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-enviro
+nment-dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-months
+-dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-number
+s-dictionary-English.dict)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/translator/translator-theore
+m-dictionary-English.dict)
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
+
+(./outline.styled.nav) (./kpi.tex)
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 45--45
+[]|[][][][][]  
+[1] (./timeline.tex)
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 55--55
+[]|[][][][][]  
+[2]
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 64--64
+[]|[][][][][]  
+[3] (./chart.tex
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsfonts/umsb.fd))
+Overfull \hbox (41.55173pt too wide) in paragraph at lines 74--74
+[]  
+
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 74--74
+[]|[][][][][]  
+[4]
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 83--83
+[]|[][][][][]  
+[5]
+Overfull \hbox (25.60728pt too wide) in paragraph at lines 92--92
+[]|[][][][][]  
+[6] (./outline.styled.aux) )
+(see the transcript file for additional information)
+Output written on outline.styled.pdf (6 pages).
+Transcript written on outline.styled.log.

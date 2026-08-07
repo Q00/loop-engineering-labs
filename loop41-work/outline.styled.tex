@@ -1,0 +1,94 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{fontspec}
+\usepackage[CJKspace=true]{xeCJK}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\definecolor{brand}{HTML}{0F766E}
+\definecolor{warn}{HTML}{D97706}
+\definecolor{mut}{HTML}{64748B}
+\definecolor{ink}{HTML}{0F172A}
+\definecolor{wash}{HTML}{E2E8F0}
+\definecolor{mark_}{HTML}{7C3AED}
+
+\setCJKmainfont{Apple SD Gothic Neo}
+\setCJKsansfont{Apple SD Gothic Neo}
+\setCJKmonofont{Apple SD Gothic Neo}
+\usefonttheme{professionalfonts}
+\usetheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{normal text}{fg=ink,bg=white}
+\setbeamercolor{frametitle}{fg=ink,bg=white}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamertemplate{frametitle}{%
+  \vspace{0.28cm}%
+  \insertframetitle\par
+  \vspace{0.08cm}%
+  \hspace*{0pt}\color{brand}\rule{\dimexpr\paperwidth-1.1cm\relax}{1.6pt}%
+  \vspace{0.10cm}%
+}
+\setbeamertemplate{itemize item}{\color{brand}\small\raisebox{0.15ex}{\textbullet}}
+\setbeamertemplate{itemize subitem}{\color{brand}\scriptsize\raisebox{0.15ex}{\textbullet}}
+\setlength{\leftmargini}{1.3em}
+\setlength{\leftmarginii}{1.1em}
+
+\title{pay-api 결제 장애 보고}
+\date{2026-07-12}
+
+\begin{document}
+
+\begin{frame}
+\frametitle{결론}
+\noindent\input{kpi.tex}\par
+pay-api 결제 API 장애: p95 최고 2500ms, 오류율 최고 9.8\%, 복구 14:52.
+\end{frame}
+
+\begin{frame}
+\frametitle{장애 개요}
+\noindent\input{timeline.tex}\par
+\begin{itemize}
+\item 14:20 이상 징후 시작 (p95 600ms로 급등)
+\item 14:29 온콜 페이징 (오류율 7.5\%, SLO 1.0\% 초과)
+\item 14:52 롤백 완료로 복구
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{근본 원인}
+\begin{itemize}
+\item 14:05 pay-api v2.3.1 배포 (캐너리 없이 직접 배포)
+\item 릴리스 설정에서 db\_pool\_size 50 -> 10으로 축소
+\item DB 커넥션 풀 고갈로 타임아웃 연쇄 발생
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{영향 범위}
+\noindent\input{chart.tex}\par
+\begin{itemize}
+\item 오류율 최고 9.8\% (14:40)
+\item p95 최고 2500ms (14:45)
+\item 체크아웃 실패 주문 다수 발생 (order 88213, 88377 등)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{대응 조치}
+\begin{itemize}
+\item 14:47 IC 승인 후 v2.3.0 롤백 결정
+\item 14:52 db\_pool\_size 50 복원, 롤백 완료
+\item 15:06 재시도 큐 드레인 (1,208건 주문 재처리)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{다음 단계}
+\begin{itemize}
+\item 배포 전 캐너리 검증 필수화 (담당: 배포 파이프라인 오너)
+\item db\_pool\_size 등 설정 변경 리뷰 게이트 추가 (담당: SRE)
+\item 커넥션 풀 고갈 알람 임계치 하향 조정 (담당: pay-api 온콜)
+\end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>pay-api postmortem</title>
+</head>
+<body>
+  <p>pay-api에서 데이터베이스 연결 풀 고갈로 결제 요청 지연과 실패가 발생했으며, 이전 버전으로 되돌린 뒤 정상화되었다.</p>
+</body>
+</html>

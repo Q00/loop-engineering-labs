@@ -1,0 +1,63 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Apple SD Gothic Neo}
+\setCJKmainfont{Apple SD Gothic Neo}
+
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+
+\begin{frame}
+\frametitle{결론}
+\centering
+search-api는 v4.1.0 배포 후 장애가 발생했고 p95\_ms 1800ms와 err\_rate\_pct 4.2\%까지 상승한 뒤 11:28 롤백으로 복구되었다.
+\end{frame}
+
+\begin{frame}
+\frametitle{장애 개요}
+\begin{itemize}
+  \item 10:40 search-api v4.1.0 배포 완료
+  \item 10:52 캐시 적중률 41\%로 하락
+  \item 11:14 err\_rate 4.2\%로 온콜 호출
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{핵심 지표}
+\begin{itemize}
+  \item p95\_ms 1800ms (p95 최고 1800ms)
+  \item err\_rate\_pct 4.2\% (오류율 최고 4.2\%)
+  \item 복구 11:28
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{원인}
+\begin{itemize}
+  \item v4.1.0 릴리스 설정에서 cache\_ttl이 300에서 5로 변경
+  \item 캐시 적중률이 기준 93\%에서 41\%로 하락
+  \item index backend 지연으로 UpstreamTimeout 발생
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{대응 및 복구}
+\begin{itemize}
+  \item 11:22 cache\_ttl 300 \textrightarrow 5 설정 차이 확인
+  \item 11:28 search-api v4.0.9 롤백 완료
+  \item 11:45 캐시 적중률 93\%로 기준 회복
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{다음 단계}
+\begin{itemize}
+  \item 배포 전 설정 검증 자동화 — 담당: 릴리스 엔지니어링
+  \item 캐시 적중률·upstream latency 알림 기준 보강 — 담당: SRE
+  \item 롤백 런북에 설정 차이 점검 단계 추가 — 담당: 플랫폼 운영
+\end{itemize}
+\end{frame}
+
+\end{document}

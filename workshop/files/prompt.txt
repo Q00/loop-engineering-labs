@@ -1,0 +1,3 @@
+strip-checkbox
+collapse-spaces
+assignee-first

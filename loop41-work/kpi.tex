@@ -1,0 +1,13 @@
+% kpi.tex: make_chart.py가 데이터에서 생성했다. 손으로 고치지 않는다.
+\begin{tikzpicture}[kpicard/.style={rectangle, rounded corners=4pt, draw=brand!22, fill=brand!8,
+    minimum width=3.5cm, minimum height=1.6cm, anchor=west}]
+  \node[kpicard] (c0) at (0.0,0) {};
+  \node[font=\scriptsize, text=mut, anchor=north west] at ([xshift=7pt,yshift=-7pt]c0.north west) {p95 최고};
+  \node[font=\Huge\bfseries, text=brand, anchor=west] at ([xshift=7pt,yshift=-5pt]c0.west) {2500\,{\normalsize ms}};
+  \node[kpicard] (c1) at (3.9,0) {};
+  \node[font=\scriptsize, text=mut, anchor=north west] at ([xshift=7pt,yshift=-7pt]c1.north west) {오류율 최고};
+  \node[font=\Huge\bfseries, text=brand, anchor=west] at ([xshift=7pt,yshift=-5pt]c1.west) {9.8\,{\normalsize \%}};
+  \node[kpicard] (c2) at (7.8,0) {};
+  \node[font=\scriptsize, text=mut, anchor=north west] at ([xshift=7pt,yshift=-7pt]c2.north west) {복구};
+  \node[font=\Huge\bfseries, text=brand, anchor=west] at ([xshift=7pt,yshift=-5pt]c2.west) {14:52\,{\normalsize }};
+\end{tikzpicture}

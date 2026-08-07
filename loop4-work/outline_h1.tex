@@ -1,0 +1,58 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{kotex}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+
+\begin{document}
+
+\begin{frame}
+\frametitle{결론}
+\centering
+\Large search-api v4.1.0 배포로 장애가 발생했고, p95\_ms 1800 ms 및 err\_rate\_pct 4.2\%까지 악화된 뒤 2026-08-14T11:28:44+09:00 rollback complete로 복구됐다.
+\end{frame}
+
+\begin{frame}
+\frametitle{장애 개요}
+\begin{itemize}
+  \item 10:40 search-api v4.1.0 rollout complete, config의 cache\_ttl=5 적용
+  \item 10:52 cache hit ratio 41\%로 하락, 10:57 upstream latency 910ms 기록
+  \item 11:02부터 UpstreamTimeout 발생, 11:14 \#oncall paged
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{핵심 지표}
+\begin{itemize}
+  \item p95\_ms 최댓값: \textbf{1800 ms} (11:20)
+  \item err\_rate\_pct 최댓값: \textbf{4.2\%} (11:15)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{원인과 영향}
+\begin{itemize}
+  \item v4.1.0 release config에서 cache\_ttl이 300에서 5로 변경
+  \item cache hit ratio 하락 이후 upstream latency 증가 및 UpstreamTimeout 발생
+  \item err\_rate\_pct 4.2\%로 SLO 1.0\% 초과
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{복구}
+\begin{itemize}
+  \item 복구 시각: 2026-08-14T11:28:44+09:00 rollback complete
+  \item 11:45 cache hit ratio 93\%로 baseline restored
+  \item 11:52 err\_rate\_pct 0.2\%로 \#oncall resolved
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{다음 단계}
+\begin{itemize}
+  \item 배포 설정 검증 및 cache\_ttl 변경 방지책 적용 담당: 플랫폼 엔지니어링
+  \item 장애 알림 및 롤백 기준 점검 담당: SRE
+  \item v4.1.0 재배포 전 검색 API 부하 검증 담당: 검색 API 개발팀
+\end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,55 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{kotex}
+
+\title{pay-api 장애 보고}
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{frame}{pay-api 장애는 v2.3.1 설정 오류로 발생했고 14:52에 복구 완료}
+\centering
+v2.3.1 설정 오류로 pay-api 장애 발생, \texttt{p95\_ms 2500ms}, \texttt{err\_rate\_pct 9.8\%}, 14:52 복구 완료
+\end{frame}
+
+\begin{frame}{장애 개요}
+\begin{itemize}
+  \item 14:05 v2.3.1 rollout complete
+  \item 14:14 DB connection wait 증가, 14:21 connection pool exhausted
+  \item 14:29 \#oncall paged
+\end{itemize}
+\end{frame}
+
+\begin{frame}{핵심 지표}
+\begin{itemize}
+  \item \texttt{p95\_ms 2500ms} (14:45)
+  \item \texttt{err\_rate\_pct 9.8\%} (14:40)
+  \item \texttt{err\_rate\_pct 7.5\%} 시점에 \#oncall paged
+\end{itemize}
+\end{frame}
+
+\begin{frame}{원인}
+\begin{itemize}
+  \item v2.3.1 release config에서 \texttt{db\_pool\_size 50 -> 10}
+  \item \texttt{pool\_size=10}, \texttt{waiters=497}
+  \item checkout failed: TimeoutError after 3 retries
+\end{itemize}
+\end{frame}
+
+\begin{frame}{복구}
+\begin{itemize}
+  \item 14:47 rollback to v2.3.0 approved by IC
+  \item 14:52 rollback to v2.3.0 complete, \texttt{db\_pool\_size=50}
+  \item 15:06 retry queue drained (1,208 orders replayed)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{다음 단계}
+\begin{itemize}
+  \item v2.3.1 release config의 \texttt{db\_pool\_size} 변경 검토 --- 담당: 플랫폼 엔지니어링
+  \item 롤백 기준과 승인 절차 정비 --- 담당: Incident Commander
+  \item retry queue 및 주문 재처리 모니터링 강화 --- 담당: SRE
+\end{itemize}
+\end{frame}
+
+\end{document}

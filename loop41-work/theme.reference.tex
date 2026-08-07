@@ -1,0 +1,72 @@
+% theme.reference.tex: 디자인 노드가 두 번 실패했을 때 쓰는 안전망 프리앰블.
+% 먼저 스스로 만들게 하고, 강의 시간이 녹기 시작하면 이걸 쓴다.
+% 원본 outline.tex의 프리앰블(첫 줄부터 document 환경이 열리기 직전까지)을 이걸로 갈아끼운다.
+% t 옵션: 프레임 내용을 위로 붙인다 (기본 beamer는 세로 가운데라 여백이 반으로 뜬다)
+\documentclass[aspectratio=169,12pt,t]{beamer}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\setCJKmainfont{Apple SD Gothic Neo}
+\setCJKsansfont{Apple SD Gothic Neo}
+\setmonofont{Menlo}[Scale=0.85]
+% 한글이 아무 음절에서나 끊기는 것을 막는다 (어절 단위 줄바꿈)
+\xeCJKsetup{CJKglue={\penalty10000\hskip0pt plus 0.08\baselineskip}}
+% 한글과 한글 사이의 실공백을 살린다. 이게 없으면 "오류율 최고"가 "오류율최고"로 붙는다
+\xeCJKsetup{CJKspace=true}
+
+\definecolor{ink}{HTML}{16202B}
+\definecolor{mut}{HTML}{7B8794}
+\definecolor{brand}{HTML}{0E7490}
+\definecolor{warn}{HTML}{C0392B}
+\definecolor{mark_}{HTML}{7B8794}
+\definecolor{wash}{HTML}{F1F6F8}
+
+\usetheme{default}
+\setbeamercolor{normal text}{fg=ink}
+\setbeamercolor{structure}{fg=brand}
+\setbeamertemplate{navigation symbols}{}
+
+% 제목: 페이지 폭 전체에 옅은 띠를 깔고, 그 안에 브랜드 룰 + 제목을 앉힌다.
+% 띠가 있으면 슬라이드마다 무게중심이 생겨 한 줄짜리 결론 슬라이드도 비어 보이지 않는다.
+\setbeamertemplate{frametitle}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[wash] (current page.north west) rectangle ([yshift=-1.5cm]current page.north east);
+    \fill[brand] ([xshift=3ex,yshift=-0.52cm]current page.north west)
+      rectangle ([xshift=3.42ex,yshift=-1.06cm]current page.north west);
+    \node[anchor=west, text=ink, font=\Large\bfseries, inner sep=0pt]
+      at ([xshift=4.4ex,yshift=-0.79cm]current page.north west) {\insertframetitle};
+  \end{tikzpicture}%
+  \vspace{0.62cm}}
+
+% 첫 장(결론)만 옅은 배경을 깔아 표지처럼 읽히게 한다. 본문을 못 고치니 배경으로 위계를 준다
+\setbeamertemplate{background}{%
+  \ifnum\insertframenumber=1\relax
+    \begin{tikzpicture}
+      \fill[wash] (0,0) rectangle (\the\paperwidth,\the\paperheight);
+      \fill[brand] (0,\the\paperheight-0.1cm) rectangle (\the\paperwidth,\the\paperheight);
+    \end{tikzpicture}%
+  \fi}
+
+% 불릿: 작은 사각형 + 넉넉한 행간
+\setbeamertemplate{itemize item}{\textcolor{brand}{\rule[0.22ex]{0.52ex}{0.52ex}}}
+\setbeamertemplate{itemize subitem}{\textcolor{mut}{\rule[0.22ex]{0.4ex}{0.4ex}}}
+\setlength{\leftmargini}{2.6em}
+\addtobeamertemplate{itemize/enumerate body begin}{\linespread{1.28}\selectfont}{}
+
+% 바닥: 얇은 선 하나 + 좌우 정보. hbox to\paperwidth 여야 \hfill이 늘어난다
+\setbeamertemplate{footline}{%
+  \hbox to\paperwidth{\hspace{2.5ex}\textcolor{wash}{\rule{0.95\paperwidth}{0.6pt}}\hfill}%
+  \vspace{2pt}%
+  \hbox to\paperwidth{\hspace{3ex}%
+    \textcolor{mut}{\scriptsize pay-api 결제 장애 보고 \;\textperiodcentered\; 2026-07-12}%
+    \hfill
+    \textcolor{mut}{\scriptsize\insertframenumber}%
+  \hspace{3ex}}%
+  \vspace{1.6ex}}
+
+% 본문을 못 고치니 크기로 위계를 준다. 한 줄짜리 결론 슬라이드도 이 크기 덕에 버틴다
+\setbeamerfont{normal text}{size=\large}
+\setlength{\parskip}{7pt}

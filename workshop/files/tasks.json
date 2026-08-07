@@ -1,0 +1,12 @@
+[
+  {"id": "t1", "split": "train",   "input": "  [ ] 배포 스크립트 고치기 @민수 ASAP  ", "expected": "@민수 배포 스크립트 고치기"},
+  {"id": "t2", "split": "train",   "input": "[ ] @지현 회의록 공유", "expected": "@지현 회의록 공유"},
+  {"id": "t3", "split": "train",   "input": "[ ]  주간 지표 정리   @수아", "expected": "@수아 주간 지표 정리"},
+  {"id": "t4", "split": "train",   "input": "[ ] 급함 서버 로그 확인 @도윤", "expected": "@도윤 서버 로그 확인"},
+  {"id": "t5", "split": "train",   "input": "[ ] QA 시나리오 업데이트 @하린!!", "expected": "@하린 QA 시나리오 업데이트"},
+  {"id": "t6", "split": "train",   "input": " [ ] 온보딩 문서 검토 @서준 빨리 ", "expected": "@서준 온보딩 문서 검토"},
+  {"id": "h1", "split": "heldout", "input": "[ ] 릴리스 노트 초안 @유나 ASAP", "expected": "@유나 릴리스 노트 초안"},
+  {"id": "h2", "split": "heldout", "input": "[ ]   백업 스크립트 점검 @민재", "expected": "@민재 백업 스크립트 점검"},
+  {"id": "h3", "split": "heldout", "input": "[ ] 급함 요금제 문의 답변 @가온", "expected": "@가온 요금제 문의 답변"},
+  {"id": "h4", "split": "heldout", "input": "[ ] 장애 회고 일정 조율 @태오!!", "expected": "@태오 장애 회고 일정 조율"}
+]
